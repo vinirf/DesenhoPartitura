@@ -13,6 +13,13 @@
 #define SWITCH(s)                       for (NSString *__s__ = (s); ; )
 #define DEFAULT
 
+#define n64th 0.0314
+#define n32th 0.0625
+#define n16th 0.125
+#define eighth 0.25
+#define quarter 0.5
+#define half 1.0
+#define whole 2.0
 
 @implementation ViewController
 
@@ -161,8 +168,9 @@
     NSMutableArray *listaNotasParaTraco = [[NSMutableArray alloc]init];
     BOOL estado  = true;
     UIImageView *nodasPartituraAdd;
-     UIImage *image = [UIImage imageNamed:@"claveSol.png"];
-    
+    NSMutableArray *auxReordenaNotas = [[NSMutableArray alloc]init];
+    int contadorAuxReordena =0;
+       
     int quantidadeNotas = [[[[Sinfonia sharedManager]listaPartiturasSinfonia]objectAtIndex:0]listaNotasPartitura].count;
     
     for(int j=0;j<[codeValue2 intValue];j++){
@@ -178,8 +186,10 @@
                     contaNumeroNotasCadaCompasso += 1;
                 }
             }
+
             
             if(compassoNota-1 == j){
+                
                 NSString *escalaNota = [[[[[[Sinfonia sharedManager]listaPartiturasSinfonia]objectAtIndex:0]listaNotasPartitura] objectAtIndex:i] nomeNota];
                 
                 NSString *tipoNota = [[[[[[Sinfonia sharedManager]listaPartiturasSinfonia]objectAtIndex:0]listaNotasPartitura] objectAtIndex:i] tipoNota];
@@ -231,8 +241,8 @@
                 }
                 
                 
-                [listaNotasParaTraco addObject:image];
-                [[self scroll ]addSubview:nodasPartituraAdd];
+                [listaNotasParaTraco addObject:nodasPartituraAdd];
+                [auxReordenaNotas addObject:nodasPartituraAdd];
                 
                 if([escudo isEqualToString:@"-1"]){
                     UIImage *image = [UIImage imageNamed:@"bemol"];
@@ -259,28 +269,71 @@
             
             contaNumeroNotasCadaCompasso = 0;
             estado = false;
+            
+            //distancia nota e barra de compassos
+            auxSoma =40;
+
         }
-        //distancia nota e barra de compassos
-        auxSoma =40;
+        
+        NSLog(@"num %d",listaNotasParaTraco.count);
+        
+        //Aux para reordenar as notas
+        for(int i=listaNotasParaTraco.count-1;i>=0;i--){
+            
+            UIImageView *notaOrdenada = [auxReordenaNotas objectAtIndex:i];
+            [[[[[[Sinfonia sharedManager]listaPartiturasSinfonia]objectAtIndex:0]listaNotasPartitura]objectAtIndex:contadorAuxReordena] setImagemNota:notaOrdenada];
+            
+            //                [[self scroll ]addSubview:[[[[[[Sinfonia sharedManager]listaPartiturasSinfonia]objectAtIndex:0]listaNotasPartitura]objectAtIndex:contadorAuxReordena]imagemNota]];
+            
+            contadorAuxReordena ++;
+        }
+        [listaNotasParaTraco removeAllObjects];
+
+        
         
     }
     
     
-//        UIImageView *posLinha1 = [listaNotasParaTraco objectAtIndex:0];
-//        UIImageView *posLinha2 = [listaNotasParaTraco objectAtIndex:1];
-//    
-//        UIImage *notaNova = [UIImage imageNamed:@"seminima"];
-//        posLinha1.image = notaNova;
-//        [[self scroll]addSubview:posLinha1];
-//    
-//        posLinha2.image = notaNova;
-//        [[self scroll]addSubview:posLinha2];
-//    
-//        UIImage *traco = [UIImage imageNamed:@"4-2Pausa"];
-//        UIImageView *tracoView = [[UIImageView alloc] initWithImage:traco];
-//        [tracoView setFrame:CGRectMake(posLinha1.frame.origin.x-30, posLinha1.frame.origin.y+6,(posLinha1.frame.origin.x-posLinha2.frame.origin.x)+10,10)];
-//    
-//        [[self scroll ]addSubview:tracoView];
+    [[self scroll ]addSubview:[[[[[[Sinfonia sharedManager]listaPartiturasSinfonia]objectAtIndex:0]listaNotasPartitura]objectAtIndex:0]imagemNota]];
+    [[self scroll ]addSubview:[[[[[[Sinfonia sharedManager]listaPartiturasSinfonia]objectAtIndex:0]listaNotasPartitura]objectAtIndex:1]imagemNota]];
+    [[self scroll ]addSubview:[[[[[[Sinfonia sharedManager]listaPartiturasSinfonia]objectAtIndex:0]listaNotasPartitura]objectAtIndex:2]imagemNota]];
+
+
+
+//    for(int i=0;i<[[[[[Sinfonia sharedManager]listaPartiturasSinfonia]objectAtIndex:0]listaNotasPartitura] count]-1;i++){
+//        
+//        Nota *nota = [[[[[Sinfonia sharedManager]listaPartiturasSinfonia]objectAtIndex:0]listaNotasPartitura]objectAtIndex:i];
+//        
+//        if([nota.concatenaNota isEqualToString: @"begin"]){
+//            
+//            Nota *notaAux = [[[[[Sinfonia sharedManager]listaPartiturasSinfonia]objectAtIndex:0]listaNotasPartitura]objectAtIndex:i];
+//            
+//            while(![notaAux.concatenaNota isEqualToString: @"end"]){
+//                
+//               notaAux = [[[[[Sinfonia sharedManager]listaPartiturasSinfonia]objectAtIndex:0]listaNotasPartitura]objectAtIndex:i+1];
+//                
+//                UIImageView *posLinha2 =  notaAux.imagemNota;
+//                UIImageView *posLinha1 = nota.imagemNota;
+//                
+//                UIImage *notaNova = [UIImage imageNamed:@"seminima"];
+//                posLinha1.image = notaNova;
+//                [[self scroll]addSubview:posLinha1];
+//                posLinha2.image = notaNova;
+//                [[self scroll]addSubview:posLinha2];
+//                
+//                int tamanhoTraco = (posLinha1.frame.origin.x-posLinha2.frame.origin.x)-5;
+//                UIImage *traco = [UIImage imageNamed:@"4-2Pausa"];
+//                UIImageView *tracoView = [[UIImageView alloc] initWithImage:traco];
+//                [tracoView setFrame:CGRectMake(posLinha2.frame.origin.x+posLinha2.frame.size.width+tamanhoTraco, posLinha2.frame.origin.y,(posLinha2.frame.origin.x-posLinha1.frame.origin.x),10)];
+//                
+//                [[self scroll ]addSubview:tracoView];
+//                
+//                i=i+1;
+//            }
+//           
+//        }
+//    }
+    
     
 }
 
@@ -501,12 +554,55 @@
 
 //////////////////////////////////////////////////////////////////////////////////
 
+-(void)brilhandoNotas{
+    
+    Nota *notaBrilha;
+    notaBrilha = [[[[[Sinfonia sharedManager]listaPartiturasSinfonia]objectAtIndex:0]listaNotasPartitura]objectAtIndex:auxBrilhaNota];
+    
+    notaBrilha.imagemNota.alpha = 0.5;
+    //notaBrilha.imagemNota.hidden = YES;
+    
+    
+    auxBrilhaNota++;
+    float tempo = 0.0;
+    
+    if([notaBrilha.tipoNota isEqualToString:@"64th"]){
+        tempo = n64th;
+    }else if([notaBrilha.tipoNota isEqualToString:@"32th"]){
+        tempo = n32th;
+    }else if([notaBrilha.tipoNota isEqualToString:@"16th"]){
+        tempo = n16th;
+    }else if([notaBrilha.tipoNota isEqualToString:@"eighth"]){
+        tempo = eighth;
+    }else if([notaBrilha.tipoNota isEqualToString:@"quarter"]){
+        tempo = quarter;
+    }else if([notaBrilha.tipoNota isEqualToString:@"half"]){
+        tempo = half;
+    }else if([notaBrilha.tipoNota isEqualToString:@"whole"]){
+        tempo = whole;
+    }else{
+        NSLog(@"deu errado temopo");
+    }
+    
+    [notaBrilha.imagemNota setNeedsDisplay];
+    [notaBrilha.imagemNota setNeedsLayout];
+    [notaBrilha.imagemNota reloadInputViews];
+    
+    if(auxBrilhaNota < [[[[[Sinfonia sharedManager]listaPartiturasSinfonia]objectAtIndex:0]listaNotasPartitura]count]) {
+        [NSTimer scheduledTimerWithTimeInterval:tempo target:self selector:@selector(brilhandoNotas) userInfo:nil repeats:NO];
+    }
+    
+   
+}
 
 - (IBAction)tocar:(id)sender {
     
     [[Sinfonia sharedManager] metodoIniciaSinfonia:@"asa":@"Piano"];
     
-    [NSTimer scheduledTimerWithTimeInterval:0.0 target:self selector:@selector(metodosDesenhaPartitura) userInfo:nil repeats:NO];
+    //[NSTimer scheduledTimerWithTimeInterval:0.0 target:self selector:@selector(metodosDesenhaPartitura) userInfo:nil repeats:NO];
+    
+    [self metodosDesenhaPartitura];
+    //[self brilhandoNotas];
     
 }
 
@@ -516,12 +612,13 @@
     [[Sinfonia sharedManager] metodoIniciaSinfonia:@"asa":@"natural"];
     
     [NSTimer scheduledTimerWithTimeInterval:0.0 target:self selector:@selector(metodosDesenhaPartitura) userInfo:nil repeats:NO];
-    
+    [NSTimer scheduledTimerWithTimeInterval:0.0 target:self selector:@selector(brilhandoNotas) userInfo:nil repeats:NO];
 }
 
 
 - (void) viewDidLoad{
     
+    auxBrilhaNota = 0;
     
 }
 

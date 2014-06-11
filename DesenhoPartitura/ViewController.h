@@ -13,6 +13,8 @@
     float tamanhoVertical;
     
     NSString *codeValue2;
+    
+    int auxBrilhaNota;
    
 }
 

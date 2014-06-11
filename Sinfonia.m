@@ -135,6 +135,7 @@
     return string;
 }
 
+
 - (void)parser:(NSXMLParser *)parser didStartElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName attributes:(NSDictionary *)attributeDict {
     
     element = elementName;
@@ -683,7 +684,6 @@
     NSLog(@"notaP2 %d %@ %d",auxIndiceNotas,notaFinal,retornaNotadoXML);
     
     auxIndiceNotas2++;
-    
     
     if(auxIndiceNotas2 < notasPartitura2.count){
         [NSTimer scheduledTimerWithTimeInterval:tempo-controleVelocidaTranNota target:self selector:@selector(tocarSegundoPentagramaViolao) userInfo:nil repeats:NO];
