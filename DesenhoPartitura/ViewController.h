@@ -1,21 +1,11 @@
 
 #import "Sinfonia.h"
 #import "DataBaseInstrumento.h"
+#import "DesenhaPartitura.h"
 
 
-
-@interface ViewController : UIViewController <NSXMLParserDelegate, UIScrollViewDelegate> {
-   
-    NSMutableArray *listaImagensTracoPentagrama;
-    NSMutableArray *listaImagensColunaPentagrama;
-    
-    float tamanhoHorizontal;
-    float tamanhoVertical;
-    
-    NSString *codeValue2;
-    
+@interface ViewController : UIViewController <UIScrollViewDelegate> {
     int auxBrilhaNota;
-   
 }
 
 @property Instrumento *inst;

@@ -14,6 +14,7 @@
 }
 
 @property UIImageView *imagemNota;
+@property UIImageView *imagemAcidente;
 @property NSString *nomeNota;
 @property NSString *oitava;
 @property NSString *duracao;

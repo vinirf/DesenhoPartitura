@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0BAC1E84194B707000F04772 /* DesenhaPartitura.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BAC1E83194B707000F04772 /* DesenhaPartitura.m */; };
 		3F04B73919450D5600B9B032 /* 1 - E.caf in Resources */ = {isa = PBXBuildFile; fileRef = 3F04B72F19450D5600B9B032 /* 1 - E.caf */; };
 		3F04B73A19450D5600B9B032 /* 2 - A.caf in Resources */ = {isa = PBXBuildFile; fileRef = 3F04B73019450D5600B9B032 /* 2 - A.caf */; };
 		3F04B73B19450D5600B9B032 /* 3 - D.caf in Resources */ = {isa = PBXBuildFile; fileRef = 3F04B73119450D5600B9B032 /* 3 - D.caf */; };
@@ -149,6 +150,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0BAC1E82194B707000F04772 /* DesenhaPartitura.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DesenhaPartitura.h; sourceTree = "<group>"; };
+		0BAC1E83194B707000F04772 /* DesenhaPartitura.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DesenhaPartitura.m; sourceTree = "<group>"; };
 		3F04B72F19450D5600B9B032 /* 1 - E.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "1 - E.caf"; sourceTree = "<group>"; };
 		3F04B73019450D5600B9B032 /* 2 - A.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "2 - A.caf"; sourceTree = "<group>"; };
 		3F04B73119450D5600B9B032 /* 3 - D.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "3 - D.caf"; sourceTree = "<group>"; };
@@ -592,6 +595,8 @@
 				3FD491C31943A7B700872810 /* Sinfonia.m */,
 				3FD491C51944253F00872810 /* LeitorPartituraXML.h */,
 				3FD491C61944253F00872810 /* LeitorPartituraXML.m */,
+				0BAC1E82194B707000F04772 /* DesenhaPartitura.h */,
+				0BAC1E83194B707000F04772 /* DesenhaPartitura.m */,
 			);
 			name = "Classes Basicas";
 			sourceTree = "<group>";
@@ -806,6 +811,7 @@
 				3FAA077B193E49F50072570B /* AppDelegate.m in Sources */,
 				3FAA0777193E49F50072570B /* main.m in Sources */,
 				3FD491B81943A57200872810 /* Partitura.m in Sources */,
+				0BAC1E84194B707000F04772 /* DesenhaPartitura.m in Sources */,
 				3FD491C71944253F00872810 /* LeitorPartituraXML.m in Sources */,
 				3FAA0996193E4AAA0072570B /* SoundBankPlayer.m in Sources */,
 			);

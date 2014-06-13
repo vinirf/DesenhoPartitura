@@ -32,7 +32,6 @@
 
 @implementation Sinfonia
 
-
 +(Sinfonia*)sharedManager{
     static Sinfonia *unicoInstrumento = nil;
     if(!unicoInstrumento){
@@ -54,6 +53,19 @@
     return [self sharedManager];
 }
 
+-(void)mostraEfeito:(Nota*)notes{
+    
+    Nota *notaBrilha = notes;
+    notaBrilha.imagemNota.alpha = 0.5;
+    
+}
+
+-(void)desapareceEfeito:(Nota*)notes{
+    
+    Nota *notaBrilha = notes;
+    notaBrilha.imagemNota.alpha = 1.0;
+    
+}
 
 -(void)metodoIniciaSinfonia:(NSString*)nomePartituras :(NSString*)nomeInstrumentoPlist {
     
@@ -97,11 +109,10 @@
     auxIndiceNotas2 = 0;
     
     recebeOrdemNotasDoInstrumento = self.instrumento.ordemNotasInstrumento;
-    
-    
+
     NSString *nomePrimeiroMetodo = self.instrumento.metodoPrimeiroTocar;
     NSString *nomeSegundoMetodo = self.instrumento.metodoSegundoTocar;
-
+    
     SEL selectors1 = NSSelectorFromString(nomePrimeiroMetodo);
     SEL selectors2 = NSSelectorFromString(nomeSegundoMetodo);
     
@@ -109,17 +120,8 @@
     
     if([codeValue isEqualToString:@"P2"] || (estadoStaff)){
         [self performSelector:selectors2];
-
-    }
         
-//    
-//    [self tocarpentagrama1];
-//    
-//    if([codeValue isEqualToString:@"P2"] || (estadoStaff)){
-//        [self tocarpentagrama2];
-//    }
-    
-    
+    }
 }
 
 
@@ -134,7 +136,6 @@
     
     return string;
 }
-
 
 - (void)parser:(NSXMLParser *)parser didStartElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName attributes:(NSDictionary *)attributeDict {
     
@@ -437,11 +438,12 @@
 
 -(void)tocarpentagrama2{
     
-    NSString *nomeNota = [[[[[self listaPartiturasSinfonia]objectAtIndex:1]listaNotasPartitura]objectAtIndex:auxIndiceNotas2]nomeNota];
-    NSString *nivelNota = [[[[[self listaPartiturasSinfonia]objectAtIndex:1]listaNotasPartitura]objectAtIndex:auxIndiceNotas2]oitava];
-    NSString *tomEncurtado = [[[[[self listaPartiturasSinfonia]objectAtIndex:1]listaNotasPartitura]objectAtIndex:auxIndiceNotas2]tom];
+    Nota *nota = [[[[self listaPartiturasSinfonia]objectAtIndex:0]listaNotasPartitura]objectAtIndex:auxIndiceNotas2];
+    NSString *nomeNota = [nota nomeNota];
+    NSString *nivelNota = [nota oitava];
+    NSString *tomEncurtado = [nota tom];
     NSString *notaFinal = [NSString stringWithFormat:@"%@%@",nivelNota,nomeNota];
-    NSString *tempoNota = [[[[[self listaPartiturasSinfonia]objectAtIndex:1]listaNotasPartitura]objectAtIndex:auxIndiceNotas2]tipoNota];
+    NSString *tempoNota = [nota tipoNota];
     
     float tempo = 0.0;
     float volume = 0.4;
@@ -503,8 +505,9 @@
         
     }
     
-    int retornaNotadoXML = [[self instrumento]retornarNumeroNotaInstrumento:recebeOrdemNotasDoInstrumento:notaFinal];
+
     
+    int retornaNotadoXML = [[self instrumento]retornarNumeroNotaInstrumento:recebeOrdemNotasDoInstrumento:notaFinal];
     [_soundBankPlayer2 queueNote:retornaNotadoXML gain:volume];
 	[_soundBankPlayer2 playQueuedNotes];
     
@@ -522,11 +525,12 @@
 
 -(void)tocarpentagrama1{
     
-    NSString *nomeNota = [[[[[self listaPartiturasSinfonia]objectAtIndex:0]listaNotasPartitura]objectAtIndex:auxIndiceNotas]nomeNota];
-    NSString *nivelNota = [[[[[self listaPartiturasSinfonia]objectAtIndex:0]listaNotasPartitura]objectAtIndex:auxIndiceNotas]oitava];
-    NSString *tomEncurtado = [[[[[self listaPartiturasSinfonia]objectAtIndex:0]listaNotasPartitura]objectAtIndex:auxIndiceNotas]tom];
+    Nota *nota = [[[[self listaPartiturasSinfonia]objectAtIndex:0]listaNotasPartitura]objectAtIndex:auxIndiceNotas];
+    NSString *nomeNota = [nota nomeNota];
+    NSString *nivelNota = [nota oitava];
+    NSString *tomEncurtado = [nota tom];
     NSString *notaFinal = [NSString stringWithFormat:@"%@%@",nivelNota,nomeNota];
-    NSString *tempoNota = [[[[[self listaPartiturasSinfonia]objectAtIndex:0]listaNotasPartitura]objectAtIndex:auxIndiceNotas]tipoNota];
+    NSString *tempoNota = [nota tipoNota];
     
     
     float tempo = 0.0;
@@ -589,9 +593,15 @@
         
     }
     
+    if(auxIndiceNotas >0){
+        Nota *nota = [[[[self listaPartiturasSinfonia]objectAtIndex:0]listaNotasPartitura]objectAtIndex:auxIndiceNotas-1];
+       [self desapareceEfeito:nota];
+    }
+    
+    [self mostraEfeito:nota];
+    
+    
     int retornaNotadoXML = [[self instrumento]retornarNumeroNotaInstrumento:recebeOrdemNotasDoInstrumento:notaFinal];
-    
-    
     [_soundBankPlayer queueNote:retornaNotadoXML gain:volume];
 	[_soundBankPlayer playQueuedNotes];
     
@@ -610,11 +620,12 @@
 
 -(void)tocarSegundoPentagramaViolao{
     
-    NSString *nomeNota = [[[[[self listaPartiturasSinfonia]objectAtIndex:1]listaNotasPartitura]objectAtIndex:auxIndiceNotas2]nomeNota];
-    NSString *nivelNota = [[[[[self listaPartiturasSinfonia]objectAtIndex:1]listaNotasPartitura]objectAtIndex:auxIndiceNotas2]oitava];
-    NSString *tomEncurtado = [[[[[self listaPartiturasSinfonia]objectAtIndex:1]listaNotasPartitura]objectAtIndex:auxIndiceNotas2]tom];
+    Nota *nota = [[[[self listaPartiturasSinfonia]objectAtIndex:0]listaNotasPartitura]objectAtIndex:auxIndiceNotas2];
+    NSString *nomeNota = [nota nomeNota];
+    NSString *nivelNota = [nota oitava];
+    NSString *tomEncurtado = [nota tom];
     NSString *notaFinal = [NSString stringWithFormat:@"%@%@",nivelNota,nomeNota];
-    NSString *tempoNota = [[[[[self listaPartiturasSinfonia]objectAtIndex:1]listaNotasPartitura]objectAtIndex:auxIndiceNotas2]tipoNota];
+    NSString *tempoNota = [nota tipoNota];
     
     float tempo = 0.0;
     float volume = 0.4;
@@ -676,8 +687,8 @@
         
     }
     
-    int retornaNotadoXML = [[self instrumento]retornarNumeroNotaInstrumento:recebeOrdemNotasDoInstrumento:notaFinal];
     
+    int retornaNotadoXML = [[self instrumento]retornarNumeroNotaInstrumento:recebeOrdemNotasDoInstrumento:notaFinal];
     [_soundBankPlayer2 queueNote:retornaNotadoXML gain:volume];
 	[_soundBankPlayer2 playQueuedNotes];
     
@@ -695,11 +706,12 @@
 -(void)tocarPrimeiroPentagramaViolao{
     
     
-    NSString *nomeNota = [[[[[self listaPartiturasSinfonia]objectAtIndex:0]listaNotasPartitura]objectAtIndex:auxIndiceNotas]nomeNota];
-    NSString *nivelNota = [[[[[self listaPartiturasSinfonia]objectAtIndex:0]listaNotasPartitura]objectAtIndex:auxIndiceNotas]oitava];
-    NSString *tomEncurtado = [[[[[self listaPartiturasSinfonia]objectAtIndex:0]listaNotasPartitura]objectAtIndex:auxIndiceNotas]tom];
+    Nota *nota = [[[[self listaPartiturasSinfonia]objectAtIndex:0]listaNotasPartitura]objectAtIndex:auxIndiceNotas];
+    NSString *nomeNota = [nota nomeNota];
+    NSString *nivelNota = [nota oitava];
+    NSString *tomEncurtado = [nota tom];
     NSString *notaFinal = [NSString stringWithFormat:@"%@%@",nivelNota,nomeNota];
-    NSString *tempoNota = [[[[[self listaPartiturasSinfonia]objectAtIndex:0]listaNotasPartitura]objectAtIndex:auxIndiceNotas]tipoNota];
+    NSString *tempoNota = [nota tipoNota];
     
     
     float tempo = 0.0;
@@ -762,11 +774,9 @@
     }else{
         
     }
-    
-     int retornaNotadoXML = [[self instrumento]retornarNumeroNotaInstrumento:recebeOrdemNotasDoInstrumento:notaFinal];
-    
+  
+    int retornaNotadoXML = [[self instrumento]retornarNumeroNotaInstrumento:recebeOrdemNotasDoInstrumento:notaFinal];
     [_soundBankPlayer queueNote:retornaNotadoXML gain:volume];
-    //NSLog(@"estado %d",retornaNotadoXML);
 	[_soundBankPlayer playQueuedNotes];
     
     NSLog(@"nota %d %@ %d",auxIndiceNotas,notaFinal,retornaNotadoXML);
