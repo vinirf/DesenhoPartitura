@@ -5,10 +5,13 @@
 
 
 @interface ViewController : UIViewController <UIScrollViewDelegate> {
-    int auxBrilhaNota;
+
 }
 
-@property Instrumento *inst;
+//Atributos do Scroll da Imagem Partitura
 @property (weak, nonatomic) IBOutlet UIScrollView *scroll;
+@property int contadorScrollDesloca;
+@property int auxContadorScroll;
+
 
 @end

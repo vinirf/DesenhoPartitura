@@ -1,74 +1,19 @@
 
-// The sounds in this demo project were taken from Fluid R3 by Frank Wen,
-// a freely distributable SoundFont.
-
-
 #import "ViewController.h"
 
 
-
-#define NSLog(FORMAT, ...) printf("%s\n", [[NSString stringWithFormat:FORMAT, ##__VA_ARGS__] UTF8String]);
-
-#define CASE(str)                       if ([__s__ isEqualToString:(str)])
-#define SWITCH(s)                       for (NSString *__s__ = (s); ; )
-#define DEFAULT
-
-#define n64th 0.0314
-#define n32th 0.0625
-#define n16th 0.125
-#define eighth 0.25
-#define quarter 0.5
-#define half 1.0
-#define whole 2.0
-
 @implementation ViewController
 
-
-
-////////////////////////////// Desenha Imagens ///////////////////////////////////
-
-
-//////////////////////////////////////////////////////////////////////////////////
-
--(void)brilhandoNotas{
+-(void)atualizaBarraScroll{
     
-    Nota *notaBrilha;
-    notaBrilha = [[[[[Sinfonia sharedManager]listaPartiturasSinfonia]objectAtIndex:0]listaNotasPartitura]objectAtIndex:auxBrilhaNota];
-    
-    notaBrilha.imagemNota.alpha = 0.5;
-    //notaBrilha.imagemNota.hidden = YES;
-    
-    
-    auxBrilhaNota++;
-    float tempo = 0.0;
-    
-    if([notaBrilha.tipoNota isEqualToString:@"64th"]){
-        tempo = n64th;
-    }else if([notaBrilha.tipoNota isEqualToString:@"32th"]){
-        tempo = n32th;
-    }else if([notaBrilha.tipoNota isEqualToString:@"16th"]){
-        tempo = n16th;
-    }else if([notaBrilha.tipoNota isEqualToString:@"eighth"]){
-        tempo = eighth;
-    }else if([notaBrilha.tipoNota isEqualToString:@"quarter"]){
-        tempo = quarter;
-    }else if([notaBrilha.tipoNota isEqualToString:@"half"]){
-        tempo = half;
-    }else if([notaBrilha.tipoNota isEqualToString:@"whole"]){
-        tempo = whole;
-    }else{
-        NSLog(@"deu errado temopo");
+    if([Sinfonia sharedManager].compassoAtual < [Sinfonia sharedManager].numeroTotalCompassos){
+        if (([Sinfonia sharedManager].compassoAtual % 8 == 0)&&([Sinfonia sharedManager].compassoAtual != self.auxContadorScroll)){
+            self.auxContadorScroll = [Sinfonia sharedManager].compassoAtual;
+            CGPoint bottomOffset = CGPointMake(0,self.contadorScrollDesloca);
+            [[self scroll] setContentOffset:bottomOffset animated:YES];
+            self.contadorScrollDesloca += 350;
+        }
     }
-    
-    [notaBrilha.imagemNota setNeedsDisplay];
-    [notaBrilha.imagemNota setNeedsLayout];
-    [notaBrilha.imagemNota reloadInputViews];
-    
-    if(auxBrilhaNota < [[[[[Sinfonia sharedManager]listaPartiturasSinfonia]objectAtIndex:0]listaNotasPartitura]count]) {
-        [NSTimer scheduledTimerWithTimeInterval:tempo target:self selector:@selector(brilhandoNotas) userInfo:nil repeats:NO];
-    }
-    
-   
 }
 
 -(void)addItensDesenhoPartituraAoScroll{
@@ -105,28 +50,25 @@
     for (UIImageView *t in [DesenhaPartitura sharedManager].listaTracoNotas) {
         [[self scroll]addSubview:t];
     }
-
-}
-
--(void)tocarPartitura {
     
+    self.contadorScrollDesloca = 400;
+    [NSTimer scheduledTimerWithTimeInterval:0.5 target:self selector:@selector(atualizaBarraScroll) userInfo:nil repeats:YES];
 
+    
 }
+
 
 - (IBAction)tocar:(id)sender {
     
-    [[Sinfonia sharedManager] metodoIniciaSinfonia:@"asa":@"Piano"];
-
+    [[Sinfonia sharedManager] metodoIniciaSinfonia:@"ticofuba":@"Piano"];
     [self addItensDesenhoPartituraAoScroll];
     
-   // [self brilhandoNotas];
 }
 
 
 - (IBAction)tocarFlauta:(id)sender {
     
     [[Sinfonia sharedManager] metodoIniciaSinfonia:@"asa":@"natural"];
-    
     [self addItensDesenhoPartituraAoScroll];
 
 }
@@ -134,7 +76,7 @@
 
 - (void) viewDidLoad{
     
-    auxBrilhaNota = 0;
+
 }
 
 

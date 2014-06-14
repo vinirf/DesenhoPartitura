@@ -131,6 +131,7 @@
 		3FAD0F92193F836300E019B3 /* Video_game.xml in Resources */ = {isa = PBXBuildFile; fileRef = 3FAD0F78193F836300E019B3 /* Video_game.xml */; };
 		3FAD0F93193F836300E019B3 /* Video_Games.xml in Resources */ = {isa = PBXBuildFile; fileRef = 3FAD0F79193F836300E019B3 /* Video_Games.xml */; };
 		3FAD0F94193F836300E019B3 /* Video_Games_ENDING.xml in Resources */ = {isa = PBXBuildFile; fileRef = 3FAD0F7A193F836300E019B3 /* Video_Games_ENDING.xml */; };
+		3FAD987F194CDBF400FEC339 /* seminimaCortada.png in Resources */ = {isa = PBXBuildFile; fileRef = 3FAD987E194CDBF400FEC339 /* seminimaCortada.png */; };
 		3FD491B81943A57200872810 /* Partitura.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FD491B71943A57200872810 /* Partitura.m */; };
 		3FD491BB1943A58000872810 /* Nota.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FD491BA1943A58000872810 /* Nota.m */; };
 		3FD491BE1943A59500872810 /* Instrumento.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FD491BD1943A59500872810 /* Instrumento.m */; };
@@ -282,6 +283,7 @@
 		3FAD0F78193F836300E019B3 /* Video_game.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = Video_game.xml; path = "../Imagens nota/Video_game.xml"; sourceTree = "<group>"; };
 		3FAD0F79193F836300E019B3 /* Video_Games.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = Video_Games.xml; path = "../Imagens nota/Video_Games.xml"; sourceTree = "<group>"; };
 		3FAD0F7A193F836300E019B3 /* Video_Games_ENDING.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = Video_Games_ENDING.xml; path = "../Imagens nota/Video_Games_ENDING.xml"; sourceTree = "<group>"; };
+		3FAD987E194CDBF400FEC339 /* seminimaCortada.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = seminimaCortada.png; sourceTree = "<group>"; };
 		3FD491B61943A57200872810 /* Partitura.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Partitura.h; sourceTree = "<group>"; };
 		3FD491B71943A57200872810 /* Partitura.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Partitura.m; sourceTree = "<group>"; };
 		3FD491B91943A58000872810 /* Nota.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Nota.h; sourceTree = "<group>"; };
@@ -559,6 +561,7 @@
 				3FAD0F67193F836300E019B3 /* colcheia.png */,
 				3FAD0F68193F836300E019B3 /* fusa.png */,
 				3FAD0F69193F836300E019B3 /* minima.png */,
+				3FAD987E194CDBF400FEC339 /* seminimaCortada.png */,
 				3FAD0F6A193F836300E019B3 /* semibreve.png */,
 				3FAD0F6B193F836300E019B3 /* semicolcheia.png */,
 				3FAD0F6C193F836300E019B3 /* semifusa.png */,
@@ -728,6 +731,7 @@
 				3FAA091E193E4AAA0072570B /* ghost.xml in Resources */,
 				3FAA0917193E4AAA0072570B /* cavaleiros.xml in Resources */,
 				3FAA099A193E4AAA0072570B /* P200 Piano A#5.caf in Resources */,
+				3FAD987F194CDBF400FEC339 /* seminimaCortada.png in Resources */,
 				3FAA0983193E4AAA0072570B /* parabens.xml in Resources */,
 				3FAD0F81193F836300E019B3 /* Hedwigs_Themefacil.xml in Resources */,
 				3FAD0F87193F836300E019B3 /* semifusa.png in Resources */,

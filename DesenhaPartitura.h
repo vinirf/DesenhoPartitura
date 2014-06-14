@@ -23,6 +23,7 @@
 @property  NSMutableArray *listaImagensColunaPentagrama;
 @property  NSMutableArray *listaArmadurasClave;
 @property  NSMutableArray *listaTracoNotas;
+@property  NSMutableArray *listaTracoNotasH;
 
 @property  UITextView *textoNumeroTempo;
 @property  UITextView *textoUnidadeTempo;

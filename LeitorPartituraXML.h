@@ -54,11 +54,18 @@
     NSMutableString *posNotaCimaBaixo;
     NSMutableString *continuaNota;
     
+    NSMutableArray *recebeOrdemNotasDoInstrumento;
+    
     BOOL estadoStaff;
+    int auxIndiceNotas;
+    int auxIndiceNotas2;
+    NSString *auxCompassoPorNota;
     
 }
+@property NSString *numeroCompassos;
 
 -(void)iniciaLeiuturaXML:(NSString*)nomeXML;
 +(LeitorPartituraXML*)sharedManager;
+
 
 @end

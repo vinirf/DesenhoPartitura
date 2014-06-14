@@ -12,7 +12,7 @@
 #import "DataBaseInstrumento.h"
 #import "SoundBankPlayer.h"
 #import "Nota.h"
-//#import "LeitorPartituraXML.h"
+#import "LeitorPartituraXML.h"
 
 #import <AVFoundation/AVFoundation.h>
 #import <CoreMedia/CoreMedia.h>
@@ -20,7 +20,7 @@
 #import <QuartzCore/QuartzCore.h>
 
 
-@interface Sinfonia : NSObject < NSXMLParserDelegate >{
+@interface Sinfonia : NSObject < NSXMLParserDelegate > {
     
     NSXMLParser *parser;
     
@@ -95,8 +95,10 @@
 
 
 @property SEL selectors;
-@property NSString *no;
--(void)teste;
+
+@property int compassoAtual;
+@property int numeroTotalCompassos;
+
 @end
 
 

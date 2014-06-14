@@ -8,6 +8,8 @@
 
 #import "LeitorPartituraXML.h"
 
+#define NSLog(FORMAT, ...) printf("%s\n", [[NSString stringWithFormat:FORMAT, ##__VA_ARGS__] UTF8String]);
+
 @implementation LeitorPartituraXML
 
 +(LeitorPartituraXML*)sharedManager{
@@ -25,8 +27,7 @@
 -(id)init{
     self = [super init];
     if(self){
-        
-    }
+            }
     return self;
 }
 
@@ -103,6 +104,7 @@
     
     if ([element isEqualToString:@"measure"]){
         codeValue2 = [attributeDict objectForKey:@"number"];
+        [Sinfonia sharedManager].numeroCompassos = codeValue2;
     }
     
 }
@@ -155,19 +157,23 @@
     }
     if ([element isEqualToString:@"duration"]) {
         [n4 appendString:string];
+    }
+    if ([element isEqualToString:@"measure"]){
         //Pega o compasso da nota
-        if(auxCodeValue2){
-            [numeroCompasso appendString:codeValue2];
-            auxCodeValue2 = false;
-        }
-        
+        if(![codeValue2  isEqual: @""]) {auxCompassoPorNota = codeValue2;}
+        [numeroCompasso appendString:codeValue2];
+    
     }
     if ([element isEqualToString:@"type"]) {
         string = [self retiraEspacoLinhaString:string];
         [n5 appendString:string];
     }
-    if ([element isEqualToString:@"alter"]) {
+    if (([element isEqualToString:@"alter"]) || ([element isEqualToString:@"accidental"])) {
         string = [self retiraEspacoLinhaString:string];
+        if([string isEqualToString:@"natural"]) string = @"0";
+        else if([string isEqualToString:@"sharp"]) string = @"1";
+        else if ([string isEqualToString:@"flat"]) string = @"-1";
+        else ;
         [tom appendString:string];
     }
     if ([element isEqualToString:@"staff"]) {
@@ -216,9 +222,8 @@
     
     if ([codeValue isEqualToString:@"P1"]){
         if ([elementName isEqualToString:@"note"]) {
-            auxCodeValue2 = true;
             if (([nivelPentagrama rangeOfString:@"1"].location != NSNotFound)) {
-                
+
                 [notas setObject:n2 forKey:@"step"];
                 [notas setObject:n3 forKey:@"octave"];
                 [notas setObject:n4 forKey:@"duration"];
@@ -226,7 +231,13 @@
                 [notas setObject:tom forKey:@"alter"];
                 [notas setObject:posNotaCimaBaixo forKey:@"stem"];
                 [notas setObject:nivelPentagrama forKey:@"staff"];
-                [notas setObject:numeroCompasso forKey:@"numCom"];
+                
+                if([numeroCompasso isEqualToString:@""]){
+                    [notas setObject:auxCompassoPorNota forKey:@"numCom"];
+                }else{
+                    [notas setObject:numeroCompasso forKey:@"numCom"];
+                }
+                
                 [notas setObject:continuaNota forKey:@"beam"];
                 
                 [notasPartitura addObject:[notas copy]];
@@ -248,6 +259,7 @@
                 [notasPartitura2 addObject:[notas copy]];
                 
             }else{
+                
                 [notas setObject:n2 forKey:@"step"];
                 [notas setObject:n3 forKey:@"octave"];
                 [notas setObject:n4 forKey:@"duration"];
@@ -255,7 +267,12 @@
                 [notas setObject:tom forKey:@"alter"];
                 [notas setObject:posNotaCimaBaixo forKey:@"stem"];
                 [notas setObject:nivelPentagrama forKey:@"staff"];
-                [notas setObject:numeroCompasso forKey:@"numCom"];
+                
+                if([numeroCompasso isEqualToString:@""]){
+                    [notas setObject:auxCompassoPorNota forKey:@"numCom"];
+                }else{
+                    [notas setObject:numeroCompasso forKey:@"numCom"];
+                }
                 [notas setObject:continuaNota forKey:@"beam"];
                 
                 [notasPartitura addObject:[notas copy]];
@@ -264,7 +281,9 @@
         }
     }
     
+    
     if  ([codeValue isEqualToString:@"P2"]){
+        NSLog(@"stringsEGUNDA %@",nivelPentagrama);
         if ([elementName isEqualToString:@"note"]) {
             [notas setObject:n2 forKey:@"step"];
             [notas setObject:n3 forKey:@"octave"];
@@ -273,6 +292,7 @@
             [notas setObject:tom forKey:@"alter"];
             [notas setObject:posNotaCimaBaixo forKey:@"stem"];
             [notas setObject:nivelPentagrama forKey:@"staff"];
+            [notas setObject:numeroCompasso forKey:@"numCom"];
             [notas setObject:continuaNota forKey:@"beam"];
             
             [notasPartitura2 addObject:[notas copy]];
@@ -280,14 +300,16 @@
         }
     }
     
+    
+    
 }
 
 - (void)parserDidEndDocument:(NSXMLParser *)parser {
     
     
     [Sinfonia sharedManager].nomeInstrumentoSinfonia = [[descricaoGeralPartitura objectAtIndex:0] objectForKey: @"instrument-name"];
-    [Sinfonia sharedManager].nomeInstrumentoSinfonia = [[descricaoGeralPartitura objectAtIndex:0] objectForKey: @"encoding-date"];
-    [Sinfonia sharedManager].nomeInstrumentoSinfonia = [[descricaoGeralPartitura objectAtIndex:0] objectForKey: @"movement-title"];
+    [Sinfonia sharedManager].dataSinfonia = [[descricaoGeralPartitura objectAtIndex:0] objectForKey: @"encoding-date"];
+    [Sinfonia sharedManager].nomeSinfonia = [[descricaoGeralPartitura objectAtIndex:0] objectForKey: @"movement-title"];
     
     
     NSLog(@"=================PARTITURA=====================");
@@ -301,10 +323,20 @@
         part.tipoClave = [[pentagramaPartitura objectAtIndex:i] objectForKey: @"sign"];
         part.linhaClave = [[pentagramaPartitura objectAtIndex:i] objectForKey: @"line"];
         [[[Sinfonia sharedManager] listaPartiturasSinfonia] addObject:part];
-        
+
     }
     
-    
+    if((estadoStaff) && (pentagramaPartitura.count != 2)){
+        Partitura *part = [[Partitura alloc]init];
+        part.divisaoPartitura = [[pentagramaPartitura objectAtIndex:0] objectForKey: @"divisions"];
+        part.armaduraClave = [[pentagramaPartitura objectAtIndex:0] objectForKey: @"fifths"];
+        part.numeroTempo = [[pentagramaPartitura objectAtIndex:0] objectForKey: @"beats"];
+        part.unidadeTempo = [[pentagramaPartitura objectAtIndex:0] objectForKey: @"beat-type"];
+        part.tipoClave = [[pentagramaPartitura objectAtIndex:0] objectForKey: @"sign"];
+        part.linhaClave = [[pentagramaPartitura objectAtIndex:0] objectForKey: @"line"];
+        [[[Sinfonia sharedManager] listaPartiturasSinfonia] addObject:part];
+
+    }
     
     NSLog(@"=================NOTAS=====================");
     for(int i=0;i<notasPartitura.count;i++){
@@ -320,8 +352,9 @@
         nota.posicaoRadiano = [[notasPartitura objectAtIndex:i] objectForKey: @"stem"];
         nota.concatenaNota = [[notasPartitura objectAtIndex:i] objectForKey: @"beam"];
         
-        [[[[[Sinfonia sharedManager] listaPartiturasSinfonia]objectAtIndex:0]listaNotasPartitura]addObject:nota];
+        NSLog(@"juvebt %d -= +%@+",i,nota.numeroCompasso);
         
+        [[[[[Sinfonia sharedManager] listaPartiturasSinfonia]objectAtIndex:0]listaNotasPartitura]addObject:nota];
         
     }
     
@@ -341,9 +374,8 @@
         
         [[[[[Sinfonia sharedManager] listaPartiturasSinfonia]objectAtIndex:1]listaNotasPartitura]addObject:nota];
         
-        
     }
-    
+
     
 }
 
