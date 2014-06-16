@@ -60,7 +60,7 @@
 
 - (IBAction)tocar:(id)sender {
     
-    [[Sinfonia sharedManager] metodoIniciaSinfonia:@"ticofuba":@"Piano"];
+    [[Sinfonia sharedManager] metodoIniciaSinfonia:@"asa":@"Piano"];
     [self addItensDesenhoPartituraAoScroll];
     
 }

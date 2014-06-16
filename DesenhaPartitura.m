@@ -106,26 +106,42 @@
     
     NSString *tipoClave = [[[[Sinfonia sharedManager] listaPartiturasSinfonia] objectAtIndex:0]tipoClave];
     int linhaClave = [[[[[Sinfonia sharedManager] listaPartiturasSinfonia] objectAtIndex:0]linhaClave] intValue];
-    UIImage *image = [UIImage imageNamed:@"claveSol.png"];
-    UIImageView *clave = [[UIImageView alloc] initWithImage:image];
-    UIImageView *posLinha = [ self.listaImagensTracoPentagrama objectAtIndex:linhaClave];
-    [clave setFrame:CGRectMake(posLinha.frame.origin.x, posLinha.frame.origin.y-50,50 , 120)];
+    UIImageView *clave;
+    
+    if([tipoClave isEqualToString:@"G"]){
+        UIImage *image = [UIImage imageNamed:@"claveSol.png"];
+        clave = [[UIImageView alloc] initWithImage:image];
+        UIImageView *posLinha = [ self.listaImagensTracoPentagrama objectAtIndex:linhaClave];
+        [clave setFrame:CGRectMake(posLinha.frame.origin.x, posLinha.frame.origin.y-50,50,120)];
+    }
+    
+    if([tipoClave isEqualToString:@"F"]){
+        UIImage *image = [UIImage imageNamed:@"claveFa.png"];
+        clave = [[UIImageView alloc] initWithImage:image];
+        UIImageView *posLinha = [ self.listaImagensTracoPentagrama objectAtIndex:linhaClave];
+        [clave setFrame:CGRectMake(posLinha.frame.origin.x, posLinha.frame.origin.y-80,55,65)];
+    }
+
     self.tipoClave = clave;
    
     
-    NSString *quantidadeArmadura = [[[[Sinfonia sharedManager] listaPartiturasSinfonia] objectAtIndex:0]armaduraClave];
-    UIImage *imgArmadura = [UIImage imageNamed:@"sharp.png"];
-    UIImageView *Imagemarmadura = [[UIImageView alloc] initWithImage:imgArmadura];
-    UIImageView *posLinhaArmadura = [ self.listaImagensTracoPentagrama objectAtIndex:0];
+    int quantidadeArmadura = [[[[[Sinfonia sharedManager] listaPartiturasSinfonia] objectAtIndex:0]armaduraClave]intValue];
+    UIImage *imgArmadura ;
     
+    if(quantidadeArmadura < 0) {imgArmadura = [UIImage imageNamed:@"bemol"];quantidadeArmadura = quantidadeArmadura * -1;}
+    if(quantidadeArmadura > 0) {imgArmadura = [UIImage imageNamed:@"sharp.png"];}
+    
+    UIImageView *imagemarmadura = [[UIImageView alloc] initWithImage:imgArmadura];
+    UIImageView *posLinhaArmadura = [ self.listaImagensTracoPentagrama objectAtIndex:0];
+    self.listaArmadurasClave = [[NSMutableArray alloc]init];
     
     int acrecentaDistanciaArmadura = 0;
     int acrecentaDistanciaArmaduraHorizontal = 45;
     
-    for(int i=0;i<[quantidadeArmadura intValue];i++){
-        UIImageView *Imagemarmadura = [[UIImageView alloc] initWithImage:imgArmadura];
-        [Imagemarmadura setFrame:CGRectMake(posLinhaArmadura.frame.origin.x+acrecentaDistanciaArmaduraHorizontal, posLinhaArmadura.frame.origin.y+acrecentaDistanciaArmadura,18 , 18)];
-        [ self.listaArmadurasClave addObject:Imagemarmadura];
+    for(int i=0;i<quantidadeArmadura;i++){
+
+        [imagemarmadura setFrame:CGRectMake(posLinhaArmadura.frame.origin.x+acrecentaDistanciaArmaduraHorizontal, posLinhaArmadura.frame.origin.y+acrecentaDistanciaArmadura,18 , 18)];
+        [ self.listaArmadurasClave addObject:imagemarmadura];
       
         acrecentaDistanciaArmadura += 25;
     }
@@ -209,18 +225,19 @@
                 
                 NSString *escudo = [[[[[[Sinfonia sharedManager]listaPartiturasSinfonia]objectAtIndex:0]listaNotasPartitura] objectAtIndex:i] tom];
                 
+                NSString *oitavo = [[[[[[Sinfonia sharedManager]listaPartiturasSinfonia]objectAtIndex:0]listaNotasPartitura] objectAtIndex:i] oitava];
+                
                 float posEscalaNota;
                 
+                UIImageView *posLinha = [self.listaImagensColunaPentagrama objectAtIndex:j];
                 
                 if([escalaNota isEqualToString:@""]){
                     nodasPartituraAdd = [self retornaImagemDaNotaPausa:tipoNota];
                     posEscalaNota = [self retornaPosNotaPausaPentagrama:tipoNota];
                 }else{
-                    nodasPartituraAdd = [self retornaImagemDaNota:tipoNota:rotacaoNota];
-                    posEscalaNota = [self retornaPosNotaPentagrama:escalaNota];
+                    nodasPartituraAdd = [self retornaImagemDaNota:tipoNota:rotacaoNota:oitavo:escalaNota];
+                    posEscalaNota = pos;
                 }
-                
-                UIImageView *posLinha = [self.listaImagensColunaPentagrama objectAtIndex:j];
                 
                 
                 [nodasPartituraAdd setFrame:CGRectMake(posLinha.frame.origin.x-auxSoma, posLinha.frame.origin.y+posEscalaNota,tamanhoHorizontal,tamanhoVertical)];
@@ -259,17 +276,17 @@
                 if([escudo isEqualToString:@"-1"]){
                     UIImage *image = [UIImage imageNamed:@"bemol"];
                      acidenteNota= [[UIImageView alloc] initWithImage:image];
-                    [acidenteNota setFrame:CGRectMake(nodasPartituraAdd.frame.origin.x-10, nodasPartituraAdd.frame.origin.y,15,20)];
+                    [acidenteNota setFrame:CGRectMake(nodasPartituraAdd.frame.origin.x+5, nodasPartituraAdd.frame.origin.y+30,15,20)];
                 }
                 else if([escudo isEqualToString:@"1"]){
                     UIImage *image = [UIImage imageNamed:@"sharp"];
                     acidenteNota = [[UIImageView alloc] initWithImage:image];
-                    [acidenteNota setFrame:CGRectMake(nodasPartituraAdd.frame.origin.x-10, nodasPartituraAdd.frame.origin.y,15,20)];
+                    [acidenteNota setFrame:CGRectMake(nodasPartituraAdd.frame.origin.x+5, nodasPartituraAdd.frame.origin.y+30,15,20)];
                 }
                 else if([escudo isEqualToString:@"0"]){
                     UIImage *image = [UIImage imageNamed:@"natural"];
                     acidenteNota = [[UIImageView alloc] initWithImage:image];
-                    [acidenteNota setFrame:CGRectMake(nodasPartituraAdd.frame.origin.x-10, nodasPartituraAdd.frame.origin.y,15,20)];
+                    [acidenteNota setFrame:CGRectMake(nodasPartituraAdd.frame.origin.x+5, nodasPartituraAdd.frame.origin.y+30,15,24)];
                 }else{
                     UIImage *image = [UIImage imageNamed:@"natural"];
                     acidenteNota = [[UIImageView alloc] initWithImage:image];
@@ -399,7 +416,7 @@
                 posLinha2 =  notaAux.imagemNota;
                 UIImageView *posLinha1 = nota.imagemNota;
                 UIImageView *posLinhaComeco = notaRisco.imagemNota;
-                
+
                 UIImage *notaNova = [UIImage imageNamed:@"seminimaCortada"];
                 
                 posLinha1.image = notaNova;
@@ -412,6 +429,7 @@
                 
                 i=i+1;
             }
+            
             UIImage *notaNova2 = [UIImage imageNamed:@"seminima"];
             posLinha2.image = notaNova2;
             [self.listaTracoNotas addObject:tracoView];
@@ -422,11 +440,25 @@
 
 }
 
--(UIImageView*)retornaImagemDaNota:(NSString*)nomeNota :(NSString*)rotacaoNota{
+//UIImage *notaNova = [UIImage imageNamed:@"seminimaCortada"];
+//CGImageRef imageRef = [notaNova CGImage];
+//UIImage *rotatedImage;
+//if([nota.posicaoRadiano isEqualToString:@"down"]){
+//    rotatedImage = [UIImage imageWithCGImage:imageRef scale:1.0 orientation:UIImageOrientationDown];
+//}else{
+//    rotatedImage = [UIImage imageWithCGImage:imageRef scale:1.0 orientation:UIImageOrientationUp];
+//}
+//
+//posLinha1.image = rotatedImage;
+//posLinha2.image = rotatedImage;
+
+-(UIImageView*)retornaImagemDaNota:(NSString*)nomeNota :(NSString*)rotacaoNota :(NSString*)oitava :(NSString*)siglaNota{
     
     NSString *tipoNota;
     tamanhoHorizontal = 30;
     tamanhoVertical = 80;
+    BOOL tracoMeio = false;
+    BOOL tracoEntre = false;
     
     SWITCH (nomeNota) {
         
@@ -466,18 +498,232 @@
         }
     }
     
+    if([oitava isEqualToString:@"3"]){
+        SWITCH (siglaNota) {
+            
+            CASE (@"C") {
+                pos = 106.0;
+                tracoEntre = true;
+                break;
+            }
+            CASE (@"D") {
+                pos = 98;
+                tracoMeio = true;
+                break;
+            }
+            CASE (@"E") {
+                pos = 90;
+                tracoEntre = true;
+                break;
+            }
+            CASE (@"F") {
+                pos = 82;
+                tracoMeio = true;
+                break;
+            }
+            CASE (@"G") {
+                pos = 74;
+                tracoEntre = true;
+                break;
+            }
+            CASE (@"A") {
+                pos = 66;
+                tracoMeio = true;
+                break;
+            }
+            CASE (@"B") {
+                pos = 58;
+                tracoEntre = true;
+                break;
+            }
+            DEFAULT{
+                pos = 0;
+                break;
+            }
+        }
+    }
+
+    if([oitava isEqualToString:@"4"]){
+        SWITCH (siglaNota) {
+            
+            CASE (@"C") {
+                pos = 50.0;
+                tracoMeio = true;
+                break;
+            }
+            CASE (@"D") {
+                pos = 40.0;
+                tracoEntre = true;
+                break;
+            }
+            CASE (@"E") {
+                pos = 32.0;
+                break;
+            }
+            CASE (@"F") {
+                pos = 22.0;
+                break;
+            }
+            CASE (@"G") {
+                pos = 12.0;
+                break;
+            }
+            CASE (@"A") {
+                pos = 2.0;
+                break;
+            }
+            CASE (@"B") {
+                pos = 48.0;
+                break;
+            }
+            DEFAULT{
+                pos = 0;
+                break;
+            }
+        }
+    }
+
+    if([oitava isEqualToString:@"5"]){
+        SWITCH (siglaNota) {
+            
+            CASE (@"C") {
+                pos = 40;
+                break;
+            }
+            CASE (@"D") {
+                pos = 30;
+                break;
+            }
+            CASE (@"E") {
+                pos = 20;
+                break;
+            }
+            CASE (@"F") {
+                pos = 10;
+                break;
+            }
+            CASE (@"G") {
+                pos = 0.0;
+                tracoEntre = true;
+                break;
+            }
+            CASE (@"A") {
+                pos = -8.0;
+                tracoMeio = true;
+                break;
+            }
+            CASE (@"B") {
+                pos = -16.0;
+                tracoEntre = true;
+                break;
+            }
+            DEFAULT{
+                pos = 0;
+                break;
+            }
+        }
+    }
+    
+    if([oitava isEqualToString:@"6"]){
+        SWITCH (siglaNota) {
+            
+            CASE (@"C") {
+                pos = -24;
+                tracoMeio = true;
+                break;
+            }
+            CASE (@"D") {
+                pos = -32;
+                tracoEntre = true;
+                break;
+            }
+            CASE (@"E") {
+                pos = -40;
+                tracoMeio = true;
+                break;
+            }
+            CASE (@"F") {
+                pos = -48;
+                tracoEntre = true;
+                break;
+            }
+            CASE (@"G") {
+                pos = -56;
+                tracoMeio = true;
+                break;
+            }
+            CASE (@"A") {
+                pos = -64;
+                tracoEntre = true;
+                break;
+            }
+            CASE (@"B") {
+                pos = -72;
+                tracoMeio = true;
+                break;
+            }
+            DEFAULT{
+                pos = 0;
+                break;
+            }
+        }
+    }
     
     
+    UIImageView *nota;
     UIImage *image = [UIImage imageNamed:tipoNota];
     CGImageRef imageRef = [image CGImage];
     UIImage *rotatedImage;
+    
     if([rotacaoNota isEqualToString:@"down"]){
         rotatedImage = [UIImage imageWithCGImage:imageRef scale:1.0 orientation:UIImageOrientationDown];
+        nota = [[UIImageView alloc] initWithImage:rotatedImage];
+        
+        if(tracoMeio){
+            // traco no meio
+            image = [UIImage imageNamed:@"4-2Pausa"];
+            UIImageView *traco = [[UIImageView alloc] initWithImage:image];
+            [traco setFrame:CGRectMake(-5,10,40.0,2.0)];
+            [nota addSubview:traco];
+        }
+        
+        if(tracoEntre){
+            UIImageView *traco;
+            image = [UIImage imageNamed:@"4-2Pausa"];
+            traco = [[UIImageView alloc] initWithImage:image];
+            [traco setFrame:CGRectMake(-5,0,40.0,2.0)];
+            [nota addSubview:traco];
+            image = [UIImage imageNamed:@"4-2Pausa"];
+            traco = [[UIImageView alloc] initWithImage:image];
+            [traco setFrame:CGRectMake(-5,20,40.0,2.0)];
+            [nota addSubview:traco];
+        }
+        
     }else{
         rotatedImage = [UIImage imageWithCGImage:imageRef scale:1.0 orientation:UIImageOrientationUp];
+        nota = [[UIImageView alloc] initWithImage:rotatedImage];
+        
+        if(tracoMeio){
+            // traco no meio
+            image = [UIImage imageNamed:@"4-2Pausa"];
+            UIImageView *traco = [[UIImageView alloc] initWithImage:image];
+            [traco setFrame:CGRectMake(-5,68,40.0,2.0)];
+            [nota addSubview:traco];
+        }
+        
+        if(tracoEntre){
+            UIImageView *traco;
+            image = [UIImage imageNamed:@"4-2Pausa"];
+            traco = [[UIImageView alloc] initWithImage:image];
+            [traco setFrame:CGRectMake(-5,60,40.0,2.0)];
+            [nota addSubview:traco];
+            image = [UIImage imageNamed:@"4-2Pausa"];
+            traco = [[UIImageView alloc] initWithImage:image];
+            [traco setFrame:CGRectMake(-5,78,40.0,2.0)];
+            [nota addSubview:traco];
+        }
+        
     }
-    
-    UIImageView *nota = [[UIImageView alloc] initWithImage:rotatedImage];
     
     return nota;
 }
@@ -535,51 +781,6 @@
     UIImageView *nota = [[UIImageView alloc] initWithImage:image];
     
     return nota;
-}
-
--(float)retornaPosNotaPentagrama:(NSString*)tipoNota{
-    
-    float pos;
-    
-    SWITCH (tipoNota) {
-        
-        CASE (@"C") {
-            pos = 50.0;
-            break;
-        }
-        CASE (@"D") {
-            pos = 45.0;
-            break;
-        }
-        CASE (@"E") {
-            pos = 37.0;
-            break;
-        }
-        CASE (@"F") {
-            pos = 17.0;
-            break;
-        }
-        CASE (@"G") {
-            pos = 7.0;
-            break;
-        }
-        CASE (@"A") {
-            pos = -4.0;
-            break;
-        }
-        CASE (@"B") {
-            pos = -13.0;
-            break;
-        }
-        DEFAULT{
-            pos = 17.0;
-            break;
-        }
-    }
-    
-    
-    return  pos;
-    
 }
 
 -(float)retornaPosNotaPausaPentagrama:(NSString*)tipoNota{

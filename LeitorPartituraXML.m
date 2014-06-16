@@ -128,21 +128,27 @@
     
     //DescricaoPartitura
     if ([element isEqualToString:@"divisions"]) {
+        string = [self retiraEspacoLinhaString:string];
         [n1 appendString:string];
     }
     if ([element isEqualToString:@"fifths"]) {
+        string = [self retiraEspacoLinhaString:string];
         [armaduraClave appendString:string];
     }
     if ([element isEqualToString:@"beats"]) {
+        string = [self retiraEspacoLinhaString:string];
         [numeroDeTempo appendString:string];
     }
     if ([element isEqualToString:@"beat-type"]) {
+        string = [self retiraEspacoLinhaString:string];
         [unidadeDeTempo appendString:string];
     }
     if ([element isEqualToString:@"sign"]) {
+        string = [self retiraEspacoLinhaString:string];
         [tipoClave appendString:string];
     }
     if ([element isEqualToString:@"line"]) {
+        string = [self retiraEspacoLinhaString:string];
         [linhaClave appendString:string];
     }
     
@@ -156,6 +162,7 @@
         [n3 appendString:string];
     }
     if ([element isEqualToString:@"duration"]) {
+        string = [self retiraEspacoLinhaString:string];
         [n4 appendString:string];
     }
     if ([element isEqualToString:@"measure"]){
@@ -324,6 +331,7 @@
         part.linhaClave = [[pentagramaPartitura objectAtIndex:i] objectForKey: @"line"];
         [[[Sinfonia sharedManager] listaPartiturasSinfonia] addObject:part];
 
+
     }
     
     if((estadoStaff) && (pentagramaPartitura.count != 2)){
@@ -334,8 +342,8 @@
         part.unidadeTempo = [[pentagramaPartitura objectAtIndex:0] objectForKey: @"beat-type"];
         part.tipoClave = [[pentagramaPartitura objectAtIndex:0] objectForKey: @"sign"];
         part.linhaClave = [[pentagramaPartitura objectAtIndex:0] objectForKey: @"line"];
+        
         [[[Sinfonia sharedManager] listaPartiturasSinfonia] addObject:part];
-
     }
     
     NSLog(@"=================NOTAS=====================");
@@ -351,8 +359,6 @@
         nota.numeroCompasso = [[notasPartitura objectAtIndex:i] objectForKey: @"numCom"];
         nota.posicaoRadiano = [[notasPartitura objectAtIndex:i] objectForKey: @"stem"];
         nota.concatenaNota = [[notasPartitura objectAtIndex:i] objectForKey: @"beam"];
-        
-        NSLog(@"juvebt %d -= +%@+",i,nota.numeroCompasso);
         
         [[[[[Sinfonia sharedManager] listaPartiturasSinfonia]objectAtIndex:0]listaNotasPartitura]addObject:nota];
         

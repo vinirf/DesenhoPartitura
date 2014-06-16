@@ -14,6 +14,8 @@
 
     float tamanhoHorizontal;
     float tamanhoVertical;
+    
+    float pos;
 }
 
 +(DesenhaPartitura*)sharedManager;
