@@ -132,6 +132,7 @@
     instr1.metodoSegundoTocar = @"tocarSegundoPentagramaViolao";
     
     [self AddInstrumento:instr1];
+    
 
 }
 

@@ -44,7 +44,7 @@
     float espacamentoRiscoPentagrama = 20.0f;
     float espacamentoEntrePentagrama = 100.0f;
     
-    float posVerticalColuna = 260.0f;
+    float posVerticalColuna = 0.0f;
     float espacamentoColunaPentagrama = 260.0f;
     float espacamentroColunaentrePentagrama = 100.0f;
     
@@ -65,6 +65,9 @@
      self.listaImagensTracoPentagrama = [[NSMutableArray alloc]init];
     
     for(int i=0;i<numeroPentagrama;i++){
+        
+        posVerticalColuna = 250.0f;
+        
         for(int i =1;i<=4;i++){
             
             if(i==4){
@@ -84,7 +87,7 @@
             }
         }
         
-        posVerticalColuna = 250.0f;
+       
         espacamentroColunaentrePentagrama +=  espacamentroColunaentrePentagrama;
         
         
@@ -126,39 +129,96 @@
    
     
     int quantidadeArmadura = [[[[[Sinfonia sharedManager] listaPartiturasSinfonia] objectAtIndex:0]armaduraClave]intValue];
-    UIImage *imgArmadura ;
+    UIImage *imgArmadura;
+    int nomeArmadura = 0;
     
-    if(quantidadeArmadura < 0) {imgArmadura = [UIImage imageNamed:@"bemol"];quantidadeArmadura = quantidadeArmadura * -1;}
-    if(quantidadeArmadura > 0) {imgArmadura = [UIImage imageNamed:@"sharp.png"];}
+    if(quantidadeArmadura > 0) {imgArmadura = [UIImage imageNamed:@"sharp.png"];nomeArmadura =0;}
+    if(quantidadeArmadura < 0) {imgArmadura = [UIImage imageNamed:@"bemol.png"]; quantidadeArmadura = quantidadeArmadura * -1;nomeArmadura=1;}
     
-    UIImageView *imagemarmadura = [[UIImageView alloc] initWithImage:imgArmadura];
+    UIImageView *imagemarmadura;
     UIImageView *posLinhaArmadura = [ self.listaImagensTracoPentagrama objectAtIndex:0];
     self.listaArmadurasClave = [[NSMutableArray alloc]init];
     
     int acrecentaDistanciaArmadura = 0;
-    int acrecentaDistanciaArmaduraHorizontal = 45;
+    int acrecentaDistanciaArmaduraHorizontal = 55;
     
     for(int i=0;i<quantidadeArmadura;i++){
-
-        [imagemarmadura setFrame:CGRectMake(posLinhaArmadura.frame.origin.x+acrecentaDistanciaArmaduraHorizontal, posLinhaArmadura.frame.origin.y+acrecentaDistanciaArmadura,18 , 18)];
-        [ self.listaArmadurasClave addObject:imagemarmadura];
       
-        acrecentaDistanciaArmadura += 25;
+        if(nomeArmadura == 0){
+            switch (i) {
+                case 0:
+                    acrecentaDistanciaArmadura = -20;
+                    break;
+                case 1:
+                    acrecentaDistanciaArmadura = 10;
+                    break;
+                case 2:
+                    acrecentaDistanciaArmadura = -30;
+                    break;
+                case 3:
+                    acrecentaDistanciaArmadura = 0;
+                    break;
+                case 4:
+                    acrecentaDistanciaArmadura = 30;
+                    break;
+                case 5:
+                    acrecentaDistanciaArmadura = -10;
+                    break;
+                case 6:
+                    acrecentaDistanciaArmadura = 20;
+                    break;
+                default:
+                    break;
+            }
+
+        }else{
+            switch (i) {
+                case 0:
+                    acrecentaDistanciaArmadura = 10;
+                    break;
+                case 1:
+                    acrecentaDistanciaArmadura = -20;
+                    break;
+                case 2:
+                    acrecentaDistanciaArmadura = 20;
+                    break;
+                case 3:
+                    acrecentaDistanciaArmadura = -10;
+                    break;
+                case 4:
+                    acrecentaDistanciaArmadura = 30;
+                    break;
+                case 5:
+                    acrecentaDistanciaArmadura = 0;
+                    break;
+                case 6:
+                    acrecentaDistanciaArmadura = 40;
+                    break;
+                default:
+                    break;
+            }
+        }
+        
+        acrecentaDistanciaArmaduraHorizontal += 17;
+        imagemarmadura = [[UIImageView alloc] initWithImage:imgArmadura];
+        [imagemarmadura setFrame:CGRectMake(posLinhaArmadura.frame.origin.x+acrecentaDistanciaArmaduraHorizontal, posLinhaArmadura.frame.origin.y+acrecentaDistanciaArmadura,15 , 40)];
+        [ self.listaArmadurasClave addObject:imagemarmadura];
+        
+       
     }
     
     
     NSString *beats = [[[[Sinfonia sharedManager] listaPartiturasSinfonia] objectAtIndex:0]numeroTempo];
     NSString *beatsType = [[[[Sinfonia sharedManager] listaPartiturasSinfonia] objectAtIndex:0]unidadeTempo];
     UIImageView *posLinhaBeats = [ self.listaImagensTracoPentagrama objectAtIndex:0];
-    UITextView * textoBeats = [[UITextView alloc] initWithFrame:CGRectMake(posLinhaBeats.frame.origin.x+75, posLinhaBeats.frame.origin.y-15, 60, 60)];
+    UITextView * textoBeats = [[UITextView alloc] initWithFrame:CGRectMake(posLinhaBeats.frame.origin.x+acrecentaDistanciaArmaduraHorizontal+30, posLinhaBeats.frame.origin.y-15, 60, 60)];
     textoBeats.font = [UIFont systemFontOfSize:50.0];
     textoBeats.backgroundColor = [UIColor clearColor];
     textoBeats.text = beats;
      self.textoNumeroTempo = textoBeats;
    
     
-    
-    UITextView * textoBeatsType = [[UITextView alloc] initWithFrame:CGRectMake(posLinhaBeats.frame.origin.x+75, posLinhaBeats.frame.origin.y+25, 60, 60)];
+    UITextView * textoBeatsType = [[UITextView alloc] initWithFrame:CGRectMake(posLinhaBeats.frame.origin.x+acrecentaDistanciaArmaduraHorizontal+30, posLinhaBeats.frame.origin.y+25, 60, 60)];
     textoBeatsType.font = [UIFont systemFontOfSize:50.0];
     textoBeatsType.backgroundColor = [UIColor clearColor];
     textoBeatsType.text = beatsType;
@@ -229,7 +289,7 @@
                 
                 float posEscalaNota;
                 
-                UIImageView *posLinha = [self.listaImagensColunaPentagrama objectAtIndex:j];
+                UIImageView *posLinha = [self.listaImagensColunaPentagrama objectAtIndex:j+1];
                 
                 if([escalaNota isEqualToString:@""]){
                     nodasPartituraAdd = [self retornaImagemDaNotaPausa:tipoNota];
@@ -399,6 +459,9 @@
     UIImageView *tracoViewH;
     Nota *notaRisco;
     UIImageView *posLinha2;
+    UIImageView *posLinhaPegaMaiorNota;
+    int tamanhoTraco = 0 ;
+    UIImageView *posLinhaComeco;
     
     for(int i=0;i<[[[[[Sinfonia sharedManager]listaPartiturasSinfonia]objectAtIndex:0]listaNotasPartitura] count]-1;i++){
         
@@ -408,30 +471,45 @@
             
             Nota *notaAux = [[[[[Sinfonia sharedManager]listaPartiturasSinfonia]objectAtIndex:0]listaNotasPartitura]objectAtIndex:i];
             notaRisco = [[[[[Sinfonia sharedManager]listaPartiturasSinfonia]objectAtIndex:0]listaNotasPartitura]objectAtIndex:i];
+           
             
             while(![notaAux.concatenaNota isEqualToString: @"end"]){
                 nota = [[[[[Sinfonia sharedManager]listaPartiturasSinfonia]objectAtIndex:0]listaNotasPartitura]objectAtIndex:i];
                 notaAux = [[[[[Sinfonia sharedManager]listaPartiturasSinfonia]objectAtIndex:0]listaNotasPartitura]objectAtIndex:i+1];
+        
+                UIImage *notaNova = [UIImage imageNamed:@"seminimaCortada"];
+                UIImage *notaInteira = [UIImage imageNamed:@"seminima"];
+                
+                if(nota.imagemNota.frame.origin.x < notaAux.imagemNota.frame.origin.x){
+                    posLinhaPegaMaiorNota =  nota.imagemNota;
+                }else{
+                    posLinhaPegaMaiorNota = notaAux.imagemNota;
+                }
                 
                 posLinha2 =  notaAux.imagemNota;
-                UIImageView *posLinha1 = nota.imagemNota;
-                UIImageView *posLinhaComeco = notaRisco.imagemNota;
 
-                UIImage *notaNova = [UIImage imageNamed:@"seminimaCortada"];
+                
+                UIImageView *posLinha1 = nota.imagemNota;
+                posLinhaComeco = notaRisco.imagemNota;
+
                 
                 posLinha1.image = notaNova;
                 posLinha2.image = notaNova;
  
-                int tamanhoTraco = (posLinhaComeco.frame.origin.x-posLinha2.frame.origin.x)-5;
+                tamanhoTraco = (posLinhaComeco.frame.origin.x-posLinhaPegaMaiorNota.frame.origin.x)-5;
                 UIImage *traco = [UIImage imageNamed:@"4-2Pausa"];
                 tracoView = [[UIImageView alloc] initWithImage:traco];
-                [tracoView setFrame:CGRectMake(posLinha2.frame.origin.x-3+posLinha2.frame.size.width+tamanhoTraco,posLinha2.frame.origin.y,(posLinha2.frame.origin.x-posLinhaComeco.frame.origin.x+10),10)];
+                
+                
+               
                 
                 i=i+1;
             }
             
-            UIImage *notaNova2 = [UIImage imageNamed:@"seminima"];
-            posLinha2.image = notaNova2;
+            [tracoView setFrame:CGRectMake(posLinhaPegaMaiorNota.frame.origin.x-3+posLinha2.frame.size.width+tamanhoTraco,
+                                           posLinhaPegaMaiorNota.frame.origin.y,
+                                           (posLinha2.frame.origin.x-posLinhaComeco.frame.origin.x+10),
+                                           10)];
             [self.listaTracoNotas addObject:tracoView];
         }
     }
@@ -502,37 +580,31 @@
         SWITCH (siglaNota) {
             
             CASE (@"C") {
-                pos = 106.0;
-                tracoEntre = true;
+                pos = 2.0;
                 break;
             }
             CASE (@"D") {
-                pos = 98;
-                tracoMeio = true;
+                pos = -8;
                 break;
             }
             CASE (@"E") {
-                pos = 90;
-                tracoEntre = true;
+                pos = 40;
                 break;
             }
             CASE (@"F") {
-                pos = 82;
-                tracoMeio = true;
+                pos = 30;
                 break;
             }
             CASE (@"G") {
-                pos = 74;
-                tracoEntre = true;
+                pos = 20;
                 break;
             }
             CASE (@"A") {
-                pos = 66;
-                tracoMeio = true;
+                pos = 10;
                 break;
             }
             CASE (@"B") {
-                pos = 58;
+                pos = 0;
                 tracoEntre = true;
                 break;
             }
