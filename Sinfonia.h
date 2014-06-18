@@ -64,6 +64,7 @@
     
     NSMutableArray *recebeOrdemNotasDoInstrumento;
     
+    int auxIndiceNotasPausa;
     int auxIndiceNotas;
     int auxIndiceNotas2;
     BOOL estadoStaff;
@@ -93,6 +94,12 @@
 -(void)metodoIniciaSinfonia:(NSString*)nomePartitura :(NSString*)nomeInstrumento;
 +(Sinfonia*)sharedManager;
 
+-(void)tocarPlayerPartitura;
+-(void)pausePlayerPartitura;
+-(void)stopPlayerPartitura;
+@property NSString *textoDescricaoNota;
+
+@property int contadorScrollDesloca;
 
 @property SEL selectors;
 

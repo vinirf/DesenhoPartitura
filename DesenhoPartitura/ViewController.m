@@ -5,13 +5,13 @@
 @implementation ViewController
 
 -(void)atualizaBarraScroll{
-    
+    NSLog(@"string %d",[Sinfonia sharedManager].numeroTotalCompassos);
     if([Sinfonia sharedManager].compassoAtual < [Sinfonia sharedManager].numeroTotalCompassos){
         if (([Sinfonia sharedManager].compassoAtual % 8 == 0)&&([Sinfonia sharedManager].compassoAtual != self.auxContadorScroll)){
             self.auxContadorScroll = [Sinfonia sharedManager].compassoAtual;
-            CGPoint bottomOffset = CGPointMake(0,self.contadorScrollDesloca);
+            CGPoint bottomOffset = CGPointMake(0,[[Sinfonia sharedManager]contadorScrollDesloca]);
             [[self scroll] setContentOffset:bottomOffset animated:YES];
-            self.contadorScrollDesloca += 350;
+            [Sinfonia sharedManager].contadorScrollDesloca += 350;
         }
     }
 }
@@ -51,8 +51,9 @@
         [[self scroll]addSubview:t];
     }
     
-    self.contadorScrollDesloca = 400;
+    [Sinfonia sharedManager].contadorScrollDesloca = 400;
     [NSTimer scheduledTimerWithTimeInterval:0.5 target:self selector:@selector(atualizaBarraScroll) userInfo:nil repeats:YES];
+    [NSTimer scheduledTimerWithTimeInterval:0.001 target:self selector:@selector(atualizaTextoDescricaoNota) userInfo:nil repeats:YES];
 
     
 }
@@ -81,4 +82,26 @@
 
 
 
+- (IBAction)botaoPause:(id)sender {
+    [[Sinfonia sharedManager]pausePlayerPartitura];
+}
+
+- (IBAction)botaoStop:(id)sender {
+    [[Sinfonia sharedManager]stopPlayerPartitura];
+    [[self scroll] setContentOffset:CGPointMake(0,0) animated:YES];
+    
+}
+
+- (IBAction)botaoPlay:(id)sender {
+    [[Sinfonia sharedManager]tocarPlayerPartitura];
+}
+
+-(void)atualizaTextoDescricaoNota{
+    self.textoDescricaoNota.text = [[Sinfonia sharedManager]textoDescricaoNota];
+}
+
 @end
+
+
+
+

@@ -96,6 +96,17 @@
     
     recebeOrdemNotasDoInstrumento = self.instrumento.ordemNotasInstrumento;
 
+    auxIndiceNotasPausa = 0;
+    
+    [self tocarPlayerPartitura];
+}
+
+////////////////////////////// Metodos Player ////////////////////////////////////
+
+-(void)tocarPlayerPartitura{
+    
+    auxIndiceNotas = auxIndiceNotasPausa;
+    
     NSString *nomePrimeiroMetodo = self.instrumento.metodoPrimeiroTocar;
     NSString *nomeSegundoMetodo = self.instrumento.metodoSegundoTocar;
     
@@ -104,12 +115,25 @@
     
     [self performSelector:selectors1];
     
-    if([codeValue isEqualToString:@"P2"] || (estadoStaff)){
-        [self performSelector:selectors2];
-        
-    }
+//    if([codeValue isEqualToString:@"P2"] || (estadoStaff)){
+//        [self performSelector:selectors2];
+//    }
 }
 
+-(void)pausePlayerPartitura {
+    auxIndiceNotasPausa = auxIndiceNotas;
+    auxIndiceNotas = [[[[self listaPartiturasSinfonia]objectAtIndex:0]listaNotasPartitura]count]-1;
+}
+
+-(void)stopPlayerPartitura{
+    Nota *nota = [[[[self listaPartiturasSinfonia]objectAtIndex:0]listaNotasPartitura]objectAtIndex:auxIndiceNotas-1];
+    
+    self.contadorScrollDesloca = 400;
+    self.compassoAtual = 0;
+    
+    nota.imagemNota.alpha = 1.0;
+    auxIndiceNotas = 0;
+}
 
 ///////////////////////////////  Piano  ///////////////////////////////////////////////
 
@@ -210,6 +234,8 @@
     NSString *notaFinal = [NSString stringWithFormat:@"%@%@",nivelNota,nomeNota];
     NSString *tempoNota = [nota tipoNota];
     self.compassoAtual = [[nota numeroCompasso]intValue];
+    self.textoDescricaoNota = [NSString stringWithFormat:@"%@%@",nivelNota,nomeNota];
+    
     
     float tempo = 0.0;
     float volume = 0.4;
@@ -306,7 +332,6 @@
     
     float tempo = 0.0;
     float volume = 0.4;
-   
     
     if([tempoNota isEqualToString:@"64th"]){
         tempo = n64th;
@@ -389,7 +414,8 @@
     NSString *tomEncurtado = [nota tom];
     NSString *notaFinal = [NSString stringWithFormat:@"%@%@",nivelNota,nomeNota];
     NSString *tempoNota = [nota tipoNota];
-    
+    self.compassoAtual = [[nota numeroCompasso]intValue];
+    self.textoDescricaoNota = [NSString stringWithFormat:@"%@%@",nivelNota,nomeNota];
     
     float tempo = 0.0;
     float volume = 0.4;
@@ -452,9 +478,18 @@
         
     }
   
+    if(auxIndiceNotas >0){
+        Nota *nota = [[[[self listaPartiturasSinfonia]objectAtIndex:0]listaNotasPartitura]objectAtIndex:auxIndiceNotas-1];
+        [self desapareceEfeito:nota];
+    }
+    
+    [self mostraEfeito:nota];
+    
+    
     int retornaNotadoXML = [[self instrumento]retornarNumeroNotaInstrumento:recebeOrdemNotasDoInstrumento:notaFinal];
     [_soundBankPlayer queueNote:retornaNotadoXML gain:volume];
 	[_soundBankPlayer playQueuedNotes];
+    
     
     NSLog(@"nota %d %@ %d",auxIndiceNotas,notaFinal,retornaNotadoXML);
     

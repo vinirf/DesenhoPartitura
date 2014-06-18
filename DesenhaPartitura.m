@@ -410,7 +410,9 @@
    
     UIImageView *tracoView;
     UIImageView *tracoViewH;
-    Nota *notaRisco;
+    float diferencaTracoBarra;
+    float acrecentaTracoNotaInvisivel;
+    
     int j=0;
     
     for(int i=0;i<[[[[[Sinfonia sharedManager]listaPartiturasSinfonia]objectAtIndex:0]listaNotasPartitura] count]-1;i++){
@@ -425,28 +427,52 @@
                 nota = [[[[[Sinfonia sharedManager]listaPartiturasSinfonia]objectAtIndex:0]listaNotasPartitura]objectAtIndex:i];
                 notaAux = [[[[[Sinfonia sharedManager]listaPartiturasSinfonia]objectAtIndex:0]listaNotasPartitura]objectAtIndex:i+1];
                 
-                UIImageView *posLinha2 =  notaAux.imagemNota;
                 UIImageView *posLinha1 = nota.imagemNota;
-                
                 UIImage *traco = [UIImage imageNamed:@"4-2Pausa"];
                 
                 tracoView = [[self listaTracoNotas]objectAtIndex:j];
                 
-                float diferencaTracoBarra = posLinha1.frame.origin.y-tracoView.frame.origin.y;
-                float acrecentaTracoNotaInvisivel = posLinha1.frame.size.height-30;
-                float tiraPedacoSobrando = posLinha1.frame.size.height;
+                diferencaTracoBarra = posLinha1.frame.origin.y-tracoView.frame.origin.y;
+                acrecentaTracoNotaInvisivel = posLinha1.frame.size.height-30;
 
-                if(diferencaTracoBarra <0){
-                    diferencaTracoBarra = 0;
+                
+                if([notaAux.posicaoRadiano isEqualToString:@"up"]){
+                    tracoViewH = [[UIImageView alloc] initWithImage:traco];
+                    [tracoViewH setFrame:CGRectMake(posLinha1.frame.origin.x+25,tracoView.frame.origin.y,3.0,diferencaTracoBarra+acrecentaTracoNotaInvisivel)];
+                }else{
+                    tracoViewH = [[UIImageView alloc] initWithImage:traco];
+                    diferencaTracoBarra = (posLinha1.frame.origin.y+posLinha1.frame.size.height)-tracoView.frame.origin.y;
+                    if(diferencaTracoBarra<0)diferencaTracoBarra = diferencaTracoBarra * -1;
+                    acrecentaTracoNotaInvisivel = posLinha1.frame.size.height-30;
+                    [tracoViewH setFrame:CGRectMake(posLinha1.frame.origin.x+2,tracoView.frame.origin.y-(diferencaTracoBarra+acrecentaTracoNotaInvisivel),3.0,diferencaTracoBarra+acrecentaTracoNotaInvisivel)];
                 }
                 
-                tracoViewH = [[UIImageView alloc] initWithImage:traco];
-                [tracoViewH setFrame:CGRectMake(posLinha1.frame.origin.x+25,tracoView.frame.origin.y,3.0,diferencaTracoBarra+acrecentaTracoNotaInvisivel)];
-                [self.listaTracoNotas addObject:tracoViewH];
-                
+                if(tracoViewH.frame.size.height > 5){
+                    [self.listaTracoNotas addObject:tracoViewH];
+                }
                 
                 i=i+1;
+
+                notaAux = [[[[[Sinfonia sharedManager]listaPartiturasSinfonia]objectAtIndex:0]listaNotasPartitura]objectAtIndex:i];
+                if([notaAux.concatenaNota isEqualToString: @"end"]){
+                     UIImageView *posLinha1 = notaAux.imagemNota;
+                    if([notaAux.posicaoRadiano isEqualToString:@"up"]){
+                        tracoViewH = [[UIImageView alloc] initWithImage:traco];
+                        [tracoViewH setFrame:CGRectMake(posLinha1.frame.origin.x+25,tracoView.frame.origin.y,3.0,diferencaTracoBarra+acrecentaTracoNotaInvisivel)];
+                    }else{
+                        tracoViewH = [[UIImageView alloc] initWithImage:traco];
+                        diferencaTracoBarra = (posLinha1.frame.origin.y+posLinha1.frame.size.height)-tracoView.frame.origin.y;
+                        if(diferencaTracoBarra<0)diferencaTracoBarra = diferencaTracoBarra * -1;
+                        acrecentaTracoNotaInvisivel = posLinha1.frame.size.height-30;
+                        [tracoViewH setFrame:CGRectMake(posLinha1.frame.origin.x+2,tracoView.frame.origin.y-(diferencaTracoBarra+acrecentaTracoNotaInvisivel),3.0,diferencaTracoBarra+acrecentaTracoNotaInvisivel)];
+                    }
+                    if(tracoViewH.frame.size.height > 5){
+                        [self.listaTracoNotas addObject:tracoViewH];
+                    }
+                }
+
             }
+            
             j++;
         }
     }
@@ -462,59 +488,82 @@
     UIImageView *posLinhaPegaMaiorNota;
     int tamanhoTraco = 0 ;
     UIImageView *posLinhaComeco;
+    Nota *notaMaior;
     
     for(int i=0;i<[[[[[Sinfonia sharedManager]listaPartiturasSinfonia]objectAtIndex:0]listaNotasPartitura] count]-1;i++){
         
         Nota *nota = [[[[[Sinfonia sharedManager]listaPartiturasSinfonia]objectAtIndex:0]listaNotasPartitura]objectAtIndex:i];
+       
         
         if([nota.concatenaNota isEqualToString: @"begin"]){
             
             Nota *notaAux = [[[[[Sinfonia sharedManager]listaPartiturasSinfonia]objectAtIndex:0]listaNotasPartitura]objectAtIndex:i];
             notaRisco = [[[[[Sinfonia sharedManager]listaPartiturasSinfonia]objectAtIndex:0]listaNotasPartitura]objectAtIndex:i];
-           
+            notaMaior = [[[[[Sinfonia sharedManager]listaPartiturasSinfonia]objectAtIndex:0]listaNotasPartitura]objectAtIndex:i];
             
             while(![notaAux.concatenaNota isEqualToString: @"end"]){
                 nota = [[[[[Sinfonia sharedManager]listaPartiturasSinfonia]objectAtIndex:0]listaNotasPartitura]objectAtIndex:i];
                 notaAux = [[[[[Sinfonia sharedManager]listaPartiturasSinfonia]objectAtIndex:0]listaNotasPartitura]objectAtIndex:i+1];
-        
-                UIImage *notaNova = [UIImage imageNamed:@"seminimaCortada"];
-                UIImage *notaInteira = [UIImage imageNamed:@"seminima"];
                 
-                if(nota.imagemNota.frame.origin.x < notaAux.imagemNota.frame.origin.x){
-                    posLinhaPegaMaiorNota =  nota.imagemNota;
+                UIImage *notaNova = [UIImage imageNamed:@"seminimaCortada"];
+                //UIImage *notaInteira = [UIImage imageNamed:@"seminima"];
+                
+                if(notaMaior.imagemNota.frame.origin.x <= notaAux.imagemNota.frame.origin.x){
+                    notaMaior = notaMaior;
+                    posLinhaPegaMaiorNota = notaMaior.imagemNota;
                 }else{
+                    notaMaior = notaAux;
                     posLinhaPegaMaiorNota = notaAux.imagemNota;
                 }
                 
-                posLinha2 =  notaAux.imagemNota;
-
                 
+                posLinha2 =  notaAux.imagemNota;
                 UIImageView *posLinha1 = nota.imagemNota;
                 posLinhaComeco = notaRisco.imagemNota;
 
+    
+                CGImageRef imageRef = [notaNova CGImage];
+                UIImage *rotatedImage;
+                if([nota.posicaoRadiano isEqualToString:@"down"]){
+                    rotatedImage = [UIImage imageWithCGImage:imageRef scale:1.0 orientation:UIImageOrientationDown];
+                }else{
+                    rotatedImage = [UIImage imageWithCGImage:imageRef scale:1.0 orientation:UIImageOrientationUp];
+                }
                 
-                posLinha1.image = notaNova;
-                posLinha2.image = notaNova;
+                posLinha1.image = rotatedImage;
+                posLinha2.image = rotatedImage;
  
                 tamanhoTraco = (posLinhaComeco.frame.origin.x-posLinhaPegaMaiorNota.frame.origin.x)-5;
                 UIImage *traco = [UIImage imageNamed:@"4-2Pausa"];
                 tracoView = [[UIImageView alloc] initWithImage:traco];
                 
                 
-               
-                
                 i=i+1;
             }
             
-            [tracoView setFrame:CGRectMake(posLinhaPegaMaiorNota.frame.origin.x-3+posLinha2.frame.size.width+tamanhoTraco,
-                                           posLinhaPegaMaiorNota.frame.origin.y,
-                                           (posLinha2.frame.origin.x-posLinhaComeco.frame.origin.x+10),
-                                           10)];
+            int valorDistanciaBarra;
+            
+            if([notaMaior.posicaoRadiano isEqualToString:@"up"]){
+                 valorDistanciaBarra = posLinhaPegaMaiorNota.frame.origin.y;
+                [tracoView setFrame:CGRectMake(posLinhaPegaMaiorNota.frame.origin.x-3+posLinha2.frame.size.width+tamanhoTraco,
+                                               valorDistanciaBarra,
+                                               (posLinha2.frame.origin.x-posLinhaComeco.frame.origin.x+10),
+                                               10)];
+
+            }else{
+                 valorDistanciaBarra = posLinhaPegaMaiorNota.frame.origin.y+posLinhaPegaMaiorNota.frame.size.height;
+                [tracoView setFrame:CGRectMake(posLinhaPegaMaiorNota.frame.origin.x+3+tamanhoTraco,
+                                               valorDistanciaBarra,
+                                               (posLinha2.frame.origin.x-posLinhaComeco.frame.origin.x+10),
+                                               10)];
+
+            }
+            
             [self.listaTracoNotas addObject:tracoView];
         }
     }
     
-    [self desenhaLinhaNotaAteTraco];
+   [self desenhaLinhaNotaAteTraco];
 
 }
 
@@ -645,7 +694,7 @@
                 break;
             }
             CASE (@"B") {
-                pos = 48.0;
+                pos = -8;//48.0
                 break;
             }
             DEFAULT{
