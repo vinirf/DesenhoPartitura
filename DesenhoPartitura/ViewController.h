@@ -16,6 +16,7 @@
 - (IBAction)botaoPause:(id)sender;
 - (IBAction)botaoStop:(id)sender;
 - (IBAction)botaoPlay:(id)sender;
+
 @property (weak, nonatomic) IBOutlet UILabel *textoDescricaoNota;
 
 @end

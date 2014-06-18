@@ -5,7 +5,6 @@
 @implementation ViewController
 
 -(void)atualizaBarraScroll{
-    NSLog(@"string %d",[Sinfonia sharedManager].numeroTotalCompassos);
     if([Sinfonia sharedManager].compassoAtual < [Sinfonia sharedManager].numeroTotalCompassos){
         if (([Sinfonia sharedManager].compassoAtual % 8 == 0)&&([Sinfonia sharedManager].compassoAtual != self.auxContadorScroll)){
             self.auxContadorScroll = [Sinfonia sharedManager].compassoAtual;
@@ -67,12 +66,19 @@
 }
 
 
-- (IBAction)tocarFlauta:(id)sender {
+- (IBAction)tocarViolao:(id)sender {
     
     [[Sinfonia sharedManager] metodoIniciaSinfonia:@"asa":@"natural"];
     [self addItensDesenhoPartituraAoScroll];
 
 }
+
+
+- (IBAction)tocarFlauta:(id)sender {
+    [[Sinfonia sharedManager] metodoIniciaSinfonia:@"asa":@"lute"];
+    [self addItensDesenhoPartituraAoScroll];
+}
+
 
 
 - (void) viewDidLoad{

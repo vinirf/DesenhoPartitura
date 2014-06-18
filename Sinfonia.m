@@ -111,7 +111,7 @@
     NSString *nomeSegundoMetodo = self.instrumento.metodoSegundoTocar;
     
     SEL selectors1 = NSSelectorFromString(nomePrimeiroMetodo);
-    SEL selectors2 = NSSelectorFromString(nomeSegundoMetodo);
+    //SEL selectors2 = NSSelectorFromString(nomeSegundoMetodo);
     
     [self performSelector:selectors1];
     
@@ -503,7 +503,103 @@
     
 }
 
+/////////////////////////////// Flauta ///////////////////////////////////////////////
 
+-(void)tocarPrimeiroPentagramaFlauta{
+    
+    
+    Nota *nota = [[[[self listaPartiturasSinfonia]objectAtIndex:0]listaNotasPartitura]objectAtIndex:auxIndiceNotas];
+    NSString *nomeNota = [nota nomeNota];
+    NSString *nivelNota = [nota oitava];
+    NSString *tomEncurtado = [nota tom];
+    NSString *notaFinal = [NSString stringWithFormat:@"%@%@",nivelNota,nomeNota];
+    NSString *tempoNota = [nota tipoNota];
+    self.compassoAtual = [[nota numeroCompasso]intValue];
+    self.textoDescricaoNota = [NSString stringWithFormat:@"%@%@",nivelNota,nomeNota];
+    
+    float tempo = 0.0;
+    float volume = 0.4;
+    
+    
+    if([tempoNota isEqualToString:@"64th"]){
+        tempo = n64th;
+    }else if([tempoNota isEqualToString:@"32th"]){
+        tempo = n32th;
+    }else if([tempoNota isEqualToString:@"16th"]){
+        tempo = n16th;
+    }else if([tempoNota isEqualToString:@"eighth"]){
+        tempo = eighth;
+    }else if([tempoNota isEqualToString:@"quarter"]){
+        tempo = quarter;
+    }else if([tempoNota isEqualToString:@"half"]){
+        tempo = half;
+    }else if([tempoNota isEqualToString:@"whole"]){
+        tempo = whole;
+        //volume = 10.0;
+    }else{
+        NSLog(@"deu errado temopo");
+    }
+    
+    
+    if ([tomEncurtado rangeOfString:@"-1"].location != NSNotFound){
+        int indiceDescerEscala = -1;
+        
+        NSLog(@"antes %@",notaFinal);
+        notaFinal  = [self.instrumento retornaIndiceListaMusicas:notaFinal:indiceDescerEscala];
+        NSLog(@"depois- %@",notaFinal);
+        
+    }else if ([tomEncurtado rangeOfString:@"1"].location != NSNotFound){
+        int indiceSubirEscala = 1;
+        
+        NSLog(@"antes %@",notaFinal);
+        notaFinal  = [self.instrumento retornaIndiceListaMusicas:notaFinal:indiceSubirEscala];
+        NSLog(@"depois+ %@",notaFinal);
+        
+    }else if ([tomEncurtado rangeOfString:@"-2"].location != NSNotFound){
+        int indiceSubirEscala = -2;
+        
+        NSLog(@"antes %@",notaFinal);
+        notaFinal  = [self.instrumento retornaIndiceListaMusicas:notaFinal:indiceSubirEscala];
+        NSLog(@"depois-- %@",notaFinal);
+        
+    }else if ([tomEncurtado rangeOfString:@"2"].location != NSNotFound){
+        int indiceSubirEscala = 2;
+        
+        NSLog(@"antes %@",notaFinal);
+        notaFinal  = [self.instrumento retornaIndiceListaMusicas:notaFinal:indiceSubirEscala];
+        NSLog(@"depois++ %@",notaFinal);
+        
+    }else if([notaFinal isEqualToString:@""]){
+        
+        volume = 0.0;
+        
+    }else{
+        
+    }
+
+    
+    if(auxIndiceNotas >0){
+        Nota *nota = [[[[self listaPartiturasSinfonia]objectAtIndex:0]listaNotasPartitura]objectAtIndex:auxIndiceNotas-1];
+        [self desapareceEfeito:nota];
+    }
+    
+    [self mostraEfeito:nota];
+    
+    [_soundBankPlayer allNotesOff];
+    int retornaNotadoXML = [[self instrumento]retornarNumeroNotaInstrumento:recebeOrdemNotasDoInstrumento:notaFinal];
+    [_soundBankPlayer queueNote:retornaNotadoXML gain:0.4];
+    [_soundBankPlayer playQueuedNotes];
+    
+    NSLog(@"nota %d %@ %d",auxIndiceNotas,notaFinal,retornaNotadoXML);
+    
+    auxIndiceNotas++;
+    
+    if(auxIndiceNotas < notasPartitura.count){
+        [NSTimer scheduledTimerWithTimeInterval:tempo target:self selector:@selector(tocarPrimeiroPentagramaFlauta) userInfo:nil repeats:NO];
+    }
+    
+}
+    
 @end
 
 
