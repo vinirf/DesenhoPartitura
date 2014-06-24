@@ -99,6 +99,7 @@
         posNotaCimaBaixo = [[NSMutableString alloc] init];
         nivelPentagrama = [[NSMutableString alloc] init];
         numeroCompasso = [[NSMutableString alloc]init];
+        pontoNota = [[NSMutableString alloc]init];
         
     }
     
@@ -194,6 +195,10 @@
         string = [self retiraEspacoLinhaString:string];
         [continuaNota appendString:string];
     }
+    if ([element isEqualToString:@"dot"]) {
+        string = @"1";
+        [pontoNota appendString:string];
+    }
     
     
     
@@ -238,6 +243,7 @@
                 [notas setObject:tom forKey:@"alter"];
                 [notas setObject:posNotaCimaBaixo forKey:@"stem"];
                 [notas setObject:nivelPentagrama forKey:@"staff"];
+                [notas setObject:pontoNota forKey:@"dot"];
                 
                 if([numeroCompasso isEqualToString:@""]){
                     [notas setObject:auxCompassoPorNota forKey:@"numCom"];
@@ -262,6 +268,7 @@
                 [notas setObject:nivelPentagrama forKey:@"staff"];
                 [notas setObject:numeroCompasso forKey:@"numCom"];
                 [notas setObject:continuaNota forKey:@"beam"];
+                [notas setObject:pontoNota forKey:@"dot"];
                 
                 [notasPartitura2 addObject:[notas copy]];
                 
@@ -274,6 +281,7 @@
                 [notas setObject:tom forKey:@"alter"];
                 [notas setObject:posNotaCimaBaixo forKey:@"stem"];
                 [notas setObject:nivelPentagrama forKey:@"staff"];
+                [notas setObject:pontoNota forKey:@"dot"];
                 
                 if([numeroCompasso isEqualToString:@""]){
                     [notas setObject:auxCompassoPorNota forKey:@"numCom"];
@@ -290,7 +298,7 @@
     
     
     if  ([codeValue isEqualToString:@"P2"]){
-        NSLog(@"stringsEGUNDA %@",nivelPentagrama);
+        //NSLog(@"stringsEGUNDA %@",nivelPentagrama);
         if ([elementName isEqualToString:@"note"]) {
             [notas setObject:n2 forKey:@"step"];
             [notas setObject:n3 forKey:@"octave"];
@@ -301,6 +309,7 @@
             [notas setObject:nivelPentagrama forKey:@"staff"];
             [notas setObject:numeroCompasso forKey:@"numCom"];
             [notas setObject:continuaNota forKey:@"beam"];
+            [notas setObject:pontoNota forKey:@"dot"];
             
             [notasPartitura2 addObject:[notas copy]];
             
@@ -359,7 +368,9 @@
         nota.numeroCompasso = [[notasPartitura objectAtIndex:i] objectForKey: @"numCom"];
         nota.posicaoRadiano = [[notasPartitura objectAtIndex:i] objectForKey: @"stem"];
         nota.concatenaNota = [[notasPartitura objectAtIndex:i] objectForKey: @"beam"];
+        nota.pontoNota = [[notasPartitura objectAtIndex:i] objectForKey: @"dot"];
         
+    
         [[[[[Sinfonia sharedManager] listaPartiturasSinfonia]objectAtIndex:0]listaNotasPartitura]addObject:nota];
         
     }

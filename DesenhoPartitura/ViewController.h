@@ -2,7 +2,7 @@
 #import "Sinfonia.h"
 #import "DataBaseInstrumento.h"
 #import "DesenhaPartitura.h"
-
+#import <QuartzCore/QuartzCore.h>
 
 @interface ViewController : UIViewController <UIScrollViewDelegate> {
 
@@ -18,5 +18,10 @@
 - (IBAction)botaoPlay:(id)sender;
 
 @property (weak, nonatomic) IBOutlet UILabel *textoDescricaoNota;
+
+@property (weak, nonatomic) IBOutlet UILabel *textoDescricaoVelocidade;
+
+- (IBAction)botaoAlteraVelocidade:(id)sender;
+
 
 @end

@@ -14,21 +14,30 @@
 #define SWITCH(s)                       for (NSString *__s__ = (s); ; )
 #define DEFAULT
 
+
+#define n64th 0.0620
+#define n32th 0.120
+#define n16th 0.20
+#define eighth 0.4
+#define quarter 1.0
+#define half 1.5
+#define whole 3.5
+
 //#define n64th 0.0625
 //#define n32th 0.125
 //#define n16th 0.25
 //#define eighth 0.5
-//#define quarter 1.0
+//#define quarter 0.5
 //#define half 2.0
 //#define whole 4.0
 
-#define n64th 0.0314
-#define n32th 0.0625
-#define n16th 0.125
-#define eighth 0.25
-#define quarter 0.5
-#define half 1.0
-#define whole 2.0
+//#define n64th 0.0314
+//#define n32th 0.0625
+//#define n16th 0.125
+//#define eighth 0.25
+//#define quarter 0.5
+//#define half 1.0
+//#define whole 2.0
 
 @implementation Sinfonia
 
@@ -44,6 +53,7 @@
     self = [super init];
     if(self){
         self.listaPartiturasSinfonia = [[NSMutableArray alloc]init];
+        self.controleVelocidaTranNota = 0.5;
     }
     return self;
 }
@@ -89,7 +99,6 @@
     
     ////////////////////////////// Tocar Musica  /////////////////////////////
     
-    controleVelocidaTranNota = 0.0;
     auxIndiceNotas = 0;
     auxIndiceNotas2 = 0;
     self.compassoAtual = 0;
@@ -108,7 +117,7 @@
     auxIndiceNotas = auxIndiceNotasPausa;
     
     NSString *nomePrimeiroMetodo = self.instrumento.metodoPrimeiroTocar;
-    NSString *nomeSegundoMetodo = self.instrumento.metodoSegundoTocar;
+   // NSString *nomeSegundoMetodo = self.instrumento.metodoSegundoTocar;
     
     SEL selectors1 = NSSelectorFromString(nomePrimeiroMetodo);
     //SEL selectors2 = NSSelectorFromString(nomeSegundoMetodo);
@@ -128,7 +137,7 @@
 -(void)stopPlayerPartitura{
     Nota *nota = [[[[self listaPartiturasSinfonia]objectAtIndex:0]listaNotasPartitura]objectAtIndex:auxIndiceNotas-1];
     
-    self.contadorScrollDesloca = 400;
+    self.contadorScrollDesloca = 500;
     self.compassoAtual = 0;
     
     nota.imagemNota.alpha = 1.0;
@@ -218,7 +227,8 @@
     
     
     if(auxIndiceNotas2 < [[[[self listaPartiturasSinfonia]objectAtIndex:1]listaNotasPartitura]count]){
-        [NSTimer scheduledTimerWithTimeInterval:tempo-controleVelocidaTranNota target:self selector:@selector(tocarpentagrama2) userInfo:nil repeats:NO];
+        if([tempoNota isEqualToString:@"quarter"]) tempo = tempo-self.controleVelocidaTranNota;
+        [NSTimer scheduledTimerWithTimeInterval:tempo target:self selector:@selector(tocarpentagrama2) userInfo:nil repeats:NO];
     }
     
     
@@ -314,7 +324,9 @@
     auxIndiceNotas++;
     
     if(auxIndiceNotas < [[[[self listaPartiturasSinfonia]objectAtIndex:0]listaNotasPartitura]count]){
-        [NSTimer scheduledTimerWithTimeInterval:tempo-controleVelocidaTranNota target:self selector:@selector(tocarpentagrama1) userInfo:nil repeats:NO];
+        if([tempoNota isEqualToString:@"quarter"]) tempo = tempo-self.controleVelocidaTranNota;
+        [NSTimer scheduledTimerWithTimeInterval:tempo target:self selector:@selector(tocarpentagrama1) userInfo:nil repeats:NO];
+        NSLog(@"tempo = %f",tempo);
     }
     
 }
@@ -399,7 +411,8 @@
     auxIndiceNotas2++;
     
     if(auxIndiceNotas2 < [[[[self listaPartiturasSinfonia]objectAtIndex:1]listaNotasPartitura]count]){
-        [NSTimer scheduledTimerWithTimeInterval:tempo-controleVelocidaTranNota target:self selector:@selector(tocarSegundoPentagramaViolao) userInfo:nil repeats:NO];
+        if([tempoNota isEqualToString:@"quarter"]) tempo = tempo-self.controleVelocidaTranNota;
+        [NSTimer scheduledTimerWithTimeInterval:tempo target:self selector:@selector(tocarSegundoPentagramaViolao) userInfo:nil repeats:NO];
     }
     
     
@@ -496,7 +509,8 @@
     auxIndiceNotas++;
     
     if(auxIndiceNotas < [[[[self listaPartiturasSinfonia]objectAtIndex:0]listaNotasPartitura]count]){
-        [NSTimer scheduledTimerWithTimeInterval:tempo-controleVelocidaTranNota target:self selector:@selector(tocarPrimeiroPentagramaViolao) userInfo:nil repeats:NO];
+        if([tempoNota isEqualToString:@"quarter"]) tempo = tempo-self.controleVelocidaTranNota;
+        [NSTimer scheduledTimerWithTimeInterval:tempo target:self selector:@selector(tocarPrimeiroPentagramaViolao) userInfo:nil repeats:NO];
     }
     
     
@@ -506,7 +520,6 @@
 /////////////////////////////// Flauta ///////////////////////////////////////////////
 
 -(void)tocarPrimeiroPentagramaFlauta{
-    
     
     Nota *nota = [[[[self listaPartiturasSinfonia]objectAtIndex:0]listaNotasPartitura]objectAtIndex:auxIndiceNotas];
     NSString *nomeNota = [nota nomeNota];
@@ -587,14 +600,15 @@
     
     [_soundBankPlayer allNotesOff];
     int retornaNotadoXML = [[self instrumento]retornarNumeroNotaInstrumento:recebeOrdemNotasDoInstrumento:notaFinal];
-    [_soundBankPlayer queueNote:retornaNotadoXML gain:0.4];
+    [_soundBankPlayer queueNote:retornaNotadoXML gain:volume];
     [_soundBankPlayer playQueuedNotes];
     
     NSLog(@"nota %d %@ %d",auxIndiceNotas,notaFinal,retornaNotadoXML);
     
     auxIndiceNotas++;
     
-    if(auxIndiceNotas < notasPartitura.count){
+    if(auxIndiceNotas < [[[[self listaPartiturasSinfonia]objectAtIndex:0]listaNotasPartitura]count]){
+        if([tempoNota isEqualToString:@"quarter"]) tempo = tempo-self.controleVelocidaTranNota;
         [NSTimer scheduledTimerWithTimeInterval:tempo target:self selector:@selector(tocarPrimeiroPentagramaFlauta) userInfo:nil repeats:NO];
     }
     

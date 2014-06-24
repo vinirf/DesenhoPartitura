@@ -18,19 +18,9 @@
 		3F04B74019450D5600B9B032 /* 6b - D.caf in Resources */ = {isa = PBXBuildFile; fileRef = 3F04B73619450D5600B9B032 /* 6b - D.caf */; };
 		3F04B74119450D5600B9B032 /* 6c - G.caf in Resources */ = {isa = PBXBuildFile; fileRef = 3F04B73719450D5600B9B032 /* 6c - G.caf */; };
 		3F04B74219450D5600B9B032 /* natural.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3F04B73819450D5600B9B032 /* natural.plist */; };
-		3F72A94619515C3D0091A3AF /* do1.caf in Resources */ = {isa = PBXBuildFile; fileRef = 3F72A93919515C3D0091A3AF /* do1.caf */; };
-		3F72A94719515C3D0091A3AF /* do2.caf in Resources */ = {isa = PBXBuildFile; fileRef = 3F72A93A19515C3D0091A3AF /* do2.caf */; };
-		3F72A94819515C3D0091A3AF /* do3.caf in Resources */ = {isa = PBXBuildFile; fileRef = 3F72A93B19515C3D0091A3AF /* do3.caf */; };
-		3F72A94919515C3D0091A3AF /* fad1.caf in Resources */ = {isa = PBXBuildFile; fileRef = 3F72A93C19515C3D0091A3AF /* fad1.caf */; };
-		3F72A94A19515C3D0091A3AF /* fad2.caf in Resources */ = {isa = PBXBuildFile; fileRef = 3F72A93D19515C3D0091A3AF /* fad2.caf */; };
-		3F72A94B19515C3D0091A3AF /* fad3.caf in Resources */ = {isa = PBXBuildFile; fileRef = 3F72A93E19515C3D0091A3AF /* fad3.caf */; };
-		3F72A94C19515C3D0091A3AF /* la1.caf in Resources */ = {isa = PBXBuildFile; fileRef = 3F72A93F19515C3D0091A3AF /* la1.caf */; };
-		3F72A94D19515C3D0091A3AF /* la2.caf in Resources */ = {isa = PBXBuildFile; fileRef = 3F72A94019515C3D0091A3AF /* la2.caf */; };
-		3F72A94E19515C3D0091A3AF /* la3.caf in Resources */ = {isa = PBXBuildFile; fileRef = 3F72A94119515C3D0091A3AF /* la3.caf */; };
-		3F72A94F19515C3D0091A3AF /* lute.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3F72A94219515C3D0091A3AF /* lute.plist */; };
-		3F72A95019515C3D0091A3AF /* mib1.caf in Resources */ = {isa = PBXBuildFile; fileRef = 3F72A94319515C3D0091A3AF /* mib1.caf */; };
-		3F72A95119515C3D0091A3AF /* mib2.caf in Resources */ = {isa = PBXBuildFile; fileRef = 3F72A94419515C3D0091A3AF /* mib2.caf */; };
-		3F72A95219515C3D0091A3AF /* mib3.caf in Resources */ = {isa = PBXBuildFile; fileRef = 3F72A94519515C3D0091A3AF /* mib3.caf */; };
+		3FA7E5C819590E9600940202 /* Aquarela.xml in Resources */ = {isa = PBXBuildFile; fileRef = 3FA7E5C519590E9600940202 /* Aquarela.xml */; };
+		3FA7E5C919590E9600940202 /* Bachviolao.xml in Resources */ = {isa = PBXBuildFile; fileRef = 3FA7E5C619590E9600940202 /* Bachviolao.xml */; };
+		3FA7E5CA19590E9600940202 /* heyjude.xml in Resources */ = {isa = PBXBuildFile; fileRef = 3FA7E5C719590E9600940202 /* heyjude.xml */; };
 		3FAA076B193E49F50072570B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3FAA076A193E49F50072570B /* Foundation.framework */; };
 		3FAA076D193E49F50072570B /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3FAA076C193E49F50072570B /* CoreGraphics.framework */; };
 		3FAA076F193E49F50072570B /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3FAA076E193E49F50072570B /* UIKit.framework */; };
@@ -120,6 +110,8 @@
 		3FAA09AF193E4BA60072570B /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3FAA09AE193E4BA60072570B /* OpenAL.framework */; };
 		3FAA09B1193E4BAD0072570B /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3FAA09B0193E4BAD0072570B /* QuartzCore.framework */; };
 		3FAA09B3193E4F470072570B /* linha.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 3FAA09B2193E4F470072570B /* linha.jpg */; };
+		3FACECAB1957737A001CCCE2 /* ponto.png in Resources */ = {isa = PBXBuildFile; fileRef = 3FACECAA1957737A001CCCE2 /* ponto.png */; };
+		3FACECAD1957772E001CCCE2 /* dot.gif in Resources */ = {isa = PBXBuildFile; fileRef = 3FACECAC1957772E001CCCE2 /* dot.gif */; };
 		3FAD0F7B193F836300E019B3 /* claveFa.png in Resources */ = {isa = PBXBuildFile; fileRef = 3FAD0F5E193F836300E019B3 /* claveFa.png */; };
 		3FAD0F7C193F836300E019B3 /* claveSol.png in Resources */ = {isa = PBXBuildFile; fileRef = 3FAD0F5F193F836300E019B3 /* claveSol.png */; };
 		3FAD0F7D193F836300E019B3 /* bemol.png in Resources */ = {isa = PBXBuildFile; fileRef = 3FAD0F61193F836300E019B3 /* bemol.png */; };
@@ -151,6 +143,19 @@
 		3FD491C11943A5AD00872810 /* DataBaseInstrumento.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FD491C01943A5AD00872810 /* DataBaseInstrumento.m */; };
 		3FD491C41943A7B700872810 /* Sinfonia.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FD491C31943A7B700872810 /* Sinfonia.m */; };
 		3FD491C71944253F00872810 /* LeitorPartituraXML.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FD491C61944253F00872810 /* LeitorPartituraXML.m */; };
+		3FD7EA1E19526A99005F089A /* do1.caf in Resources */ = {isa = PBXBuildFile; fileRef = 3FD7EA1119526A99005F089A /* do1.caf */; };
+		3FD7EA1F19526A99005F089A /* do2.caf in Resources */ = {isa = PBXBuildFile; fileRef = 3FD7EA1219526A99005F089A /* do2.caf */; };
+		3FD7EA2019526A99005F089A /* do3.caf in Resources */ = {isa = PBXBuildFile; fileRef = 3FD7EA1319526A99005F089A /* do3.caf */; };
+		3FD7EA2119526A99005F089A /* fad1.caf in Resources */ = {isa = PBXBuildFile; fileRef = 3FD7EA1419526A99005F089A /* fad1.caf */; };
+		3FD7EA2219526A99005F089A /* fad2.caf in Resources */ = {isa = PBXBuildFile; fileRef = 3FD7EA1519526A99005F089A /* fad2.caf */; };
+		3FD7EA2319526A99005F089A /* fad3.caf in Resources */ = {isa = PBXBuildFile; fileRef = 3FD7EA1619526A99005F089A /* fad3.caf */; };
+		3FD7EA2419526A99005F089A /* FlautaDoce.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3FD7EA1719526A99005F089A /* FlautaDoce.plist */; };
+		3FD7EA2519526A99005F089A /* la1.caf in Resources */ = {isa = PBXBuildFile; fileRef = 3FD7EA1819526A99005F089A /* la1.caf */; };
+		3FD7EA2619526A99005F089A /* la2.caf in Resources */ = {isa = PBXBuildFile; fileRef = 3FD7EA1919526A99005F089A /* la2.caf */; };
+		3FD7EA2719526A99005F089A /* la3.caf in Resources */ = {isa = PBXBuildFile; fileRef = 3FD7EA1A19526A99005F089A /* la3.caf */; };
+		3FD7EA2819526A99005F089A /* mib1.caf in Resources */ = {isa = PBXBuildFile; fileRef = 3FD7EA1B19526A99005F089A /* mib1.caf */; };
+		3FD7EA2919526A99005F089A /* mib2.caf in Resources */ = {isa = PBXBuildFile; fileRef = 3FD7EA1C19526A99005F089A /* mib2.caf */; };
+		3FD7EA2A19526A99005F089A /* mib3.caf in Resources */ = {isa = PBXBuildFile; fileRef = 3FD7EA1D19526A99005F089A /* mib3.caf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -176,19 +181,9 @@
 		3F04B73619450D5600B9B032 /* 6b - D.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "6b - D.caf"; sourceTree = "<group>"; };
 		3F04B73719450D5600B9B032 /* 6c - G.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "6c - G.caf"; sourceTree = "<group>"; };
 		3F04B73819450D5600B9B032 /* natural.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = natural.plist; sourceTree = "<group>"; };
-		3F72A93919515C3D0091A3AF /* do1.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = do1.caf; sourceTree = "<group>"; };
-		3F72A93A19515C3D0091A3AF /* do2.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = do2.caf; sourceTree = "<group>"; };
-		3F72A93B19515C3D0091A3AF /* do3.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = do3.caf; sourceTree = "<group>"; };
-		3F72A93C19515C3D0091A3AF /* fad1.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = fad1.caf; sourceTree = "<group>"; };
-		3F72A93D19515C3D0091A3AF /* fad2.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = fad2.caf; sourceTree = "<group>"; };
-		3F72A93E19515C3D0091A3AF /* fad3.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = fad3.caf; sourceTree = "<group>"; };
-		3F72A93F19515C3D0091A3AF /* la1.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = la1.caf; sourceTree = "<group>"; };
-		3F72A94019515C3D0091A3AF /* la2.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = la2.caf; sourceTree = "<group>"; };
-		3F72A94119515C3D0091A3AF /* la3.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = la3.caf; sourceTree = "<group>"; };
-		3F72A94219515C3D0091A3AF /* lute.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = lute.plist; sourceTree = "<group>"; };
-		3F72A94319515C3D0091A3AF /* mib1.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = mib1.caf; sourceTree = "<group>"; };
-		3F72A94419515C3D0091A3AF /* mib2.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = mib2.caf; sourceTree = "<group>"; };
-		3F72A94519515C3D0091A3AF /* mib3.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = mib3.caf; sourceTree = "<group>"; };
+		3FA7E5C519590E9600940202 /* Aquarela.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Aquarela.xml; sourceTree = "<group>"; };
+		3FA7E5C619590E9600940202 /* Bachviolao.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Bachviolao.xml; sourceTree = "<group>"; };
+		3FA7E5C719590E9600940202 /* heyjude.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = heyjude.xml; sourceTree = "<group>"; };
 		3FAA0767193E49F50072570B /* DesenhoPartitura.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DesenhoPartitura.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3FAA076A193E49F50072570B /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		3FAA076C193E49F50072570B /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -285,6 +280,8 @@
 		3FAA09AE193E4BA60072570B /* OpenAL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenAL.framework; path = System/Library/Frameworks/OpenAL.framework; sourceTree = SDKROOT; };
 		3FAA09B0193E4BAD0072570B /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		3FAA09B2193E4F470072570B /* linha.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = linha.jpg; path = ../linha.jpg; sourceTree = "<group>"; };
+		3FACECAA1957737A001CCCE2 /* ponto.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ponto.png; sourceTree = "<group>"; };
+		3FACECAC1957772E001CCCE2 /* dot.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = dot.gif; sourceTree = "<group>"; };
 		3FAD0F5E193F836300E019B3 /* claveFa.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = claveFa.png; sourceTree = "<group>"; };
 		3FAD0F5F193F836300E019B3 /* claveSol.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = claveSol.png; sourceTree = "<group>"; };
 		3FAD0F61193F836300E019B3 /* bemol.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bemol.png; sourceTree = "<group>"; };
@@ -322,6 +319,19 @@
 		3FD491C31943A7B700872810 /* Sinfonia.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Sinfonia.m; sourceTree = "<group>"; };
 		3FD491C51944253F00872810 /* LeitorPartituraXML.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LeitorPartituraXML.h; sourceTree = "<group>"; };
 		3FD491C61944253F00872810 /* LeitorPartituraXML.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LeitorPartituraXML.m; sourceTree = "<group>"; };
+		3FD7EA1119526A99005F089A /* do1.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = do1.caf; sourceTree = "<group>"; };
+		3FD7EA1219526A99005F089A /* do2.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = do2.caf; sourceTree = "<group>"; };
+		3FD7EA1319526A99005F089A /* do3.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = do3.caf; sourceTree = "<group>"; };
+		3FD7EA1419526A99005F089A /* fad1.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = fad1.caf; sourceTree = "<group>"; };
+		3FD7EA1519526A99005F089A /* fad2.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = fad2.caf; sourceTree = "<group>"; };
+		3FD7EA1619526A99005F089A /* fad3.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = fad3.caf; sourceTree = "<group>"; };
+		3FD7EA1719526A99005F089A /* FlautaDoce.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = FlautaDoce.plist; sourceTree = "<group>"; };
+		3FD7EA1819526A99005F089A /* la1.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = la1.caf; sourceTree = "<group>"; };
+		3FD7EA1919526A99005F089A /* la2.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = la2.caf; sourceTree = "<group>"; };
+		3FD7EA1A19526A99005F089A /* la3.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = la3.caf; sourceTree = "<group>"; };
+		3FD7EA1B19526A99005F089A /* mib1.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = mib1.caf; sourceTree = "<group>"; };
+		3FD7EA1C19526A99005F089A /* mib2.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = mib2.caf; sourceTree = "<group>"; };
+		3FD7EA1D19526A99005F089A /* mib3.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = mib3.caf; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -368,36 +378,16 @@
 			path = "guitar natural";
 			sourceTree = "<group>";
 		};
-		3F72A93819515C3D0091A3AF /* lute */ = {
-			isa = PBXGroup;
-			children = (
-				3F72A93919515C3D0091A3AF /* do1.caf */,
-				3F72A93A19515C3D0091A3AF /* do2.caf */,
-				3F72A93B19515C3D0091A3AF /* do3.caf */,
-				3F72A93C19515C3D0091A3AF /* fad1.caf */,
-				3F72A93D19515C3D0091A3AF /* fad2.caf */,
-				3F72A93E19515C3D0091A3AF /* fad3.caf */,
-				3F72A93F19515C3D0091A3AF /* la1.caf */,
-				3F72A94019515C3D0091A3AF /* la2.caf */,
-				3F72A94119515C3D0091A3AF /* la3.caf */,
-				3F72A94219515C3D0091A3AF /* lute.plist */,
-				3F72A94319515C3D0091A3AF /* mib1.caf */,
-				3F72A94419515C3D0091A3AF /* mib2.caf */,
-				3F72A94519515C3D0091A3AF /* mib3.caf */,
-			);
-			path = lute;
-			sourceTree = "<group>";
-		};
 		3FAA075E193E49F50072570B = {
 			isa = PBXGroup;
 			children = (
 				3FAD0F5C193F836300E019B3 /* Imagens nota */,
+				3FAA0890193E4AAA0072570B /* SoundBankPlayer */,
 				3F04B72E19450D5600B9B032 /* guitar natural */,
-				3F72A93819515C3D0091A3AF /* lute */,
+				3FAA0895193E4AAA0072570B /* Sounds */,
+				3FD7EA1019526A99005F089A /* Flauta */,
 				3FAA0807193E4AAA0072570B /* Partitura */,
 				3FD491B51943A54C00872810 /* Classes Basicas */,
-				3FAA0890193E4AAA0072570B /* SoundBankPlayer */,
-				3FAA0895193E4AAA0072570B /* Sounds */,
 				3FAA0770193E49F50072570B /* DesenhoPartitura */,
 				3FAA0792193E49F50072570B /* DesenhoPartituraTests */,
 				3FAA0769193E49F50072570B /* Frameworks */,
@@ -475,6 +465,9 @@
 		3FAA0807193E4AAA0072570B /* Partitura */ = {
 			isa = PBXGroup;
 			children = (
+				3FA7E5C519590E9600940202 /* Aquarela.xml */,
+				3FA7E5C619590E9600940202 /* Bachviolao.xml */,
+				3FA7E5C719590E9600940202 /* heyjude.xml */,
 				3FAD0F76193F836300E019B3 /* Star_Wars_ThemeViolino.xml */,
 				3FAD0F64193F836300E019B3 /* Hedwigs_ThemeDif.xml */,
 				3FAD0F78193F836300E019B3 /* Video_game.xml */,
@@ -595,6 +588,8 @@
 		3FAD0F60193F836300E019B3 /* Escudo */ = {
 			isa = PBXGroup;
 			children = (
+				3FACECAC1957772E001CCCE2 /* dot.gif */,
+				3FACECAA1957737A001CCCE2 /* ponto.png */,
 				3FAD0F61193F836300E019B3 /* bemol.png */,
 				3FAD0F62193F836300E019B3 /* natural.png */,
 				3FAD0F63193F836300E019B3 /* sharp.png */,
@@ -649,6 +644,26 @@
 				0BAC1E83194B707000F04772 /* DesenhaPartitura.m */,
 			);
 			name = "Classes Basicas";
+			sourceTree = "<group>";
+		};
+		3FD7EA1019526A99005F089A /* Flauta */ = {
+			isa = PBXGroup;
+			children = (
+				3FD7EA1719526A99005F089A /* FlautaDoce.plist */,
+				3FD7EA1119526A99005F089A /* do1.caf */,
+				3FD7EA1219526A99005F089A /* do2.caf */,
+				3FD7EA1319526A99005F089A /* do3.caf */,
+				3FD7EA1419526A99005F089A /* fad1.caf */,
+				3FD7EA1519526A99005F089A /* fad2.caf */,
+				3FD7EA1619526A99005F089A /* fad3.caf */,
+				3FD7EA1819526A99005F089A /* la1.caf */,
+				3FD7EA1919526A99005F089A /* la2.caf */,
+				3FD7EA1A19526A99005F089A /* la3.caf */,
+				3FD7EA1B19526A99005F089A /* mib1.caf */,
+				3FD7EA1C19526A99005F089A /* mib2.caf */,
+				3FD7EA1D19526A99005F089A /* mib3.caf */,
+			);
+			path = Flauta;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -733,25 +748,26 @@
 				3FAD0F93193F836300E019B3 /* Video_Games.xml in Resources */,
 				3FAD0F89193F836300E019B3 /* colcheiaPausa.png in Resources */,
 				3FAA0910193E4AAA0072570B /* adele.xml in Resources */,
-				3F72A94819515C3D0091A3AF /* do3.caf in Resources */,
+				3FD7EA2019526A99005F089A /* do3.caf in Resources */,
 				3FAA0998193E4AAA0072570B /* P200 Piano A#3.caf in Resources */,
 				3F04B73F19450D5600B9B032 /* 6a - A.caf in Resources */,
-				3F72A94619515C3D0091A3AF /* do1.caf in Resources */,
+				3FD7EA1E19526A99005F089A /* do1.caf in Resources */,
 				3FAD0F8A193F836300E019B3 /* fusaPausa.png in Resources */,
 				3FAA099B193E4AAA0072570B /* P200 Piano A#7.caf in Resources */,
-				3F72A94919515C3D0091A3AF /* fad1.caf in Resources */,
+				3FACECAB1957737A001CCCE2 /* ponto.png in Resources */,
+				3FD7EA2119526A99005F089A /* fad1.caf in Resources */,
 				3FAA090E193E4AAA0072570B /* 5th_Symphony.xml in Resources */,
 				3FAA09A1193E4AAA0072570B /* P200 Piano D4.caf in Resources */,
-				3F72A94C19515C3D0091A3AF /* la1.caf in Resources */,
 				3FAA0920193E4AAA0072570B /* harry_potter_theme_song.xml in Resources */,
 				3FAA0992193E4AAA0072570B /* zelda.xml in Resources */,
-				3F72A95119515C3D0091A3AF /* mib2.caf in Resources */,
-				3F72A94E19515C3D0091A3AF /* la3.caf in Resources */,
 				3FAD0F80193F836300E019B3 /* Hedwigs_ThemeDif.xml in Resources */,
+				3FD7EA2919526A99005F089A /* mib2.caf in Resources */,
+				3FA7E5CA19590E9600940202 /* heyjude.xml in Resources */,
 				3FAD0F82193F836300E019B3 /* colcheia.png in Resources */,
-				3F72A95219515C3D0091A3AF /* mib3.caf in Resources */,
+				3FA7E5C919590E9600940202 /* Bachviolao.xml in Resources */,
 				3FAA0929193E4AAA0072570B /* nokia.xml in Resources */,
 				3FAA09A8193E4AAA0072570B /* P200 Piano F#6.caf in Resources */,
+				3FD7EA2A19526A99005F089A /* mib3.caf in Resources */,
 				3FAA091A193E4AAA0072570B /* Chopin-Etude in Am.xml in Resources */,
 				3FAD0F8D193F836300E019B3 /* semicolcheiaPausa.png in Resources */,
 				3FAA0990193E4AAA0072570B /* Villa-Lobos - Bachianas Brasileiras.xml in Resources */,
@@ -781,34 +797,35 @@
 				3FAA09AB193E4AAA0072570B /* Piano.plist in Resources */,
 				3F04B73919450D5600B9B032 /* 1 - E.caf in Resources */,
 				3F04B73D19450D5600B9B032 /* 5 - B.caf in Resources */,
-				3F72A94719515C3D0091A3AF /* do2.caf in Resources */,
+				3FD7EA1F19526A99005F089A /* do2.caf in Resources */,
 				3FAA09A5193E4AAA0072570B /* P200 Piano F#3.caf in Resources */,
 				3FAA091E193E4AAA0072570B /* ghost.xml in Resources */,
 				3FAA0917193E4AAA0072570B /* cavaleiros.xml in Resources */,
 				3FAA099A193E4AAA0072570B /* P200 Piano A#5.caf in Resources */,
 				3FAD987F194CDBF400FEC339 /* seminimaCortada.png in Resources */,
 				3FAA0983193E4AAA0072570B /* parabens.xml in Resources */,
-				3F72A94D19515C3D0091A3AF /* la2.caf in Resources */,
 				3FAD0F81193F836300E019B3 /* Hedwigs_Themefacil.xml in Resources */,
 				3FAD0F87193F836300E019B3 /* semifusa.png in Resources */,
 				3FAD0F7C193F836300E019B3 /* claveSol.png in Resources */,
+				3FD7EA2619526A99005F089A /* la2.caf in Resources */,
 				3FAA0989193E4AAA0072570B /* simp.xml in Resources */,
 				3FAA09A6193E4AAA0072570B /* P200 Piano F#4.caf in Resources */,
 				3F04B73B19450D5600B9B032 /* 3 - D.caf in Resources */,
-				3F72A94F19515C3D0091A3AF /* lute.plist in Resources */,
 				3FAA0912193E4AAA0072570B /* asabranca.xml in Resources */,
 				3FAD0F7F193F836300E019B3 /* sharp.png in Resources */,
+				3FD7EA2519526A99005F089A /* la1.caf in Resources */,
 				3F04B73C19450D5600B9B032 /* 4 - G.caf in Resources */,
-				3F72A94B19515C3D0091A3AF /* fad3.caf in Resources */,
+				3FD7EA2319526A99005F089A /* fad3.caf in Resources */,
 				3FAA0924193E4AAA0072570B /* mario.xml in Resources */,
 				3FAA0916193E4AAA0072570B /* caribe.xml in Resources */,
 				3FAA0922193E4AAA0072570B /* kokiri-forest.xml in Resources */,
-				3F72A94A19515C3D0091A3AF /* fad2.caf in Resources */,
+				3FD7EA2219526A99005F089A /* fad2.caf in Resources */,
 				3FAA0927193E4AAA0072570B /* natal.xml in Resources */,
 				3FAD0F92193F836300E019B3 /* Video_game.xml in Resources */,
 				3FAA099D193E4AAA0072570B /* P200 Piano C7.caf in Resources */,
 				3FAA0781193E49F50072570B /* Main_iPad.storyboard in Resources */,
 				3FAA0988193E4AAA0072570B /* score2.xml in Resources */,
+				3FACECAD1957772E001CCCE2 /* dot.gif in Resources */,
 				3FAD0F88193F836300E019B3 /* seminima.png in Resources */,
 				3FAA09B3193E4F470072570B /* linha.jpg in Resources */,
 				3FAD0F7D193F836300E019B3 /* bemol.png in Resources */,
@@ -824,10 +841,13 @@
 				3FAA09A0193E4AAA0072570B /* P200 Piano D3.caf in Resources */,
 				3FAA0982193E4AAA0072570B /* palmeiras.xml in Resources */,
 				3FAA098B193E4AAA0072570B /* The_Legend_Of_Zelda_Kokiri_Forest.xml in Resources */,
+				3FD7EA2419526A99005F089A /* FlautaDoce.plist in Resources */,
 				3F04B73E19450D5600B9B032 /* 6 - E.caf in Resources */,
 				3FAD0F7B193F836300E019B3 /* claveFa.png in Resources */,
 				3FAD0F85193F836300E019B3 /* semibreve.png in Resources */,
+				3FD7EA2719526A99005F089A /* la3.caf in Resources */,
 				3FAA091F193E4AAA0072570B /* gostosao.xml in Resources */,
+				3FA7E5C819590E9600940202 /* Aquarela.xml in Resources */,
 				3FAA077E193E49F50072570B /* Main_iPhone.storyboard in Resources */,
 				3FAA0918193E4AAA0072570B /* Chant.xml in Resources */,
 				3FAA099E193E4AAA0072570B /* P200 Piano D#8.caf in Resources */,
@@ -843,7 +863,7 @@
 				3FAA098C193E4AAA0072570B /* ticofuba.xml in Resources */,
 				3FAA0997193E4AAA0072570B /* P200 Piano A#2.caf in Resources */,
 				3FAA0915193E4AAA0072570B /* Beethoven-Sonata opus .xml in Resources */,
-				3F72A95019515C3D0091A3AF /* mib1.caf in Resources */,
+				3FD7EA2819526A99005F089A /* mib1.caf in Resources */,
 				3FAA09A4193E4AAA0072570B /* P200 Piano F#2.caf in Resources */,
 				3F04B74219450D5600B9B032 /* natural.plist in Resources */,
 				3FAA0987193E4AAA0072570B /* score.xml in Resources */,

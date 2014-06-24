@@ -34,7 +34,8 @@
 
 -(void)instanciaInstrumentoFlauta{
     Instrumento *instr1 = [[Instrumento alloc]init];
-    instr1.nomeInstrumento = @"lute";
+    
+    instr1.nomeInstrumento = @"FlautaDoce";
     
     NSMutableArray *nomeNotas = [[NSMutableArray alloc]init];
     [nomeNotas addObject:@"0A"];
@@ -368,7 +369,7 @@
         }
     }
     
-    return [[self listaInstrumentos ] objectAtIndex:0];
+    return NULL;
 }
 
 

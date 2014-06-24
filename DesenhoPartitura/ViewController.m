@@ -10,7 +10,7 @@
             self.auxContadorScroll = [Sinfonia sharedManager].compassoAtual;
             CGPoint bottomOffset = CGPointMake(0,[[Sinfonia sharedManager]contadorScrollDesloca]);
             [[self scroll] setContentOffset:bottomOffset animated:YES];
-            [Sinfonia sharedManager].contadorScrollDesloca += 350;
+            [Sinfonia sharedManager].contadorScrollDesloca += 500;
         }
     }
 }
@@ -21,7 +21,7 @@
     
     self.scroll.delegate = self;
     
-    [[self scroll] setContentSize:CGSizeMake(self.scroll.bounds.size.width, self.scroll.bounds.size.height* ([[[Sinfonia sharedManager]numeroCompassos] floatValue]/11))];
+    [[self scroll] setContentSize:CGSizeMake(self.scroll.bounds.size.width, self.scroll.bounds.size.height* ([[[Sinfonia sharedManager]numeroCompassos] floatValue]))];
     
     for (UIImageView *t in [DesenhaPartitura sharedManager].listaImagensColunaPentagrama) {
         [[self scroll]addSubview:t];
@@ -46,28 +46,47 @@
         [[self scroll]addSubview:t.imagemAcidente];
     }
     
+    for (Nota *t in [[[[Sinfonia sharedManager]listaPartiturasSinfonia]objectAtIndex:0]listaNotasPartitura]) {
+        if([t.pontoNota isEqualToString:@"1"]){
+            [[self scroll]addSubview:t.imagePontoNota];
+        }
+    }
+    
     for (UIImageView *t in [DesenhaPartitura sharedManager].listaTracoNotas) {
         [[self scroll]addSubview:t];
     }
     
-    [Sinfonia sharedManager].contadorScrollDesloca = 400;
-    [NSTimer scheduledTimerWithTimeInterval:0.5 target:self selector:@selector(atualizaBarraScroll) userInfo:nil repeats:YES];
+   
     [NSTimer scheduledTimerWithTimeInterval:0.001 target:self selector:@selector(atualizaTextoDescricaoNota) userInfo:nil repeats:YES];
 
     
 }
 
+-(void)atualizaAlteraTempo{
+    
+    self.textoDescricaoVelocidade.text = [NSString stringWithFormat:@"%0.2f",[[Sinfonia sharedManager]controleVelocidaTranNota]];
+    
+}
+
+
+- (void) viewDidLoad{
+    
+    [Sinfonia sharedManager].contadorScrollDesloca = 500;
+    [NSTimer scheduledTimerWithTimeInterval:0.1 target:self selector:@selector(atualizaBarraScroll) userInfo:nil repeats:YES];
+    
+    [NSTimer scheduledTimerWithTimeInterval:0.1 target:self selector:@selector(atualizaAlteraTempo) userInfo:nil repeats:YES];
+    
+}
+
 
 - (IBAction)tocar:(id)sender {
-    
-    [[Sinfonia sharedManager] metodoIniciaSinfonia:@"asa":@"Piano"];
+    [[Sinfonia sharedManager] metodoIniciaSinfonia:@"ticofuba":@"Piano"];
     [self addItensDesenhoPartituraAoScroll];
     
 }
 
 
 - (IBAction)tocarViolao:(id)sender {
-    
     [[Sinfonia sharedManager] metodoIniciaSinfonia:@"asa":@"natural"];
     [self addItensDesenhoPartituraAoScroll];
 
@@ -75,15 +94,8 @@
 
 
 - (IBAction)tocarFlauta:(id)sender {
-    [[Sinfonia sharedManager] metodoIniciaSinfonia:@"asa":@"lute"];
+    [[Sinfonia sharedManager] metodoIniciaSinfonia:@"5th_Symphony":@"FlautaDoce"];
     [self addItensDesenhoPartituraAoScroll];
-}
-
-
-
-- (void) viewDidLoad{
-    
-
 }
 
 
@@ -95,7 +107,7 @@
 - (IBAction)botaoStop:(id)sender {
     [[Sinfonia sharedManager]stopPlayerPartitura];
     [[self scroll] setContentOffset:CGPointMake(0,0) animated:YES];
-    
+
 }
 
 - (IBAction)botaoPlay:(id)sender {
@@ -104,6 +116,21 @@
 
 -(void)atualizaTextoDescricaoNota{
     self.textoDescricaoNota.text = [[Sinfonia sharedManager]textoDescricaoNota];
+}
+
+- (IBAction)botaoAlteraVelocidade:(id)sender {
+    UIStepper *stepper = (UIStepper *) sender;
+    
+    stepper.maximumValue = 0.95;
+    stepper.minimumValue = 0;
+    stepper.stepValue = 0.05;
+    
+    stepper.continuous = YES;
+    stepper.autorepeat =YES;
+    
+   
+    [Sinfonia sharedManager].controleVelocidaTranNota = stepper.value;
+   
 }
 
 @end

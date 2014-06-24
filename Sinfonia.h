@@ -69,8 +69,6 @@
     int auxIndiceNotas2;
     BOOL estadoStaff;
     
-    float controleVelocidaTranNota;
-    
     SoundBankPlayer *_soundBankPlayer;
     SoundBankPlayer *_soundBankPlayer2;
     
@@ -105,6 +103,10 @@
 
 @property int compassoAtual;
 @property int numeroTotalCompassos;
+
+
+
+@property float controleVelocidaTranNota;
 
 @end
 

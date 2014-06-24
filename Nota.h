@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <QuartzCore/QuartzCore.h>
 
 @interface Nota : NSObject {
   
@@ -15,6 +16,7 @@
 
 @property UIImageView *imagemNota;
 @property UIImageView *imagemAcidente;
+@property UIImageView *imagePontoNota;
 @property NSString *nomeNota;
 @property NSString *oitava;
 @property NSString *duracao;
@@ -24,6 +26,8 @@
 @property NSString *numeroCompasso;
 @property NSString *posicaoRadiano;
 @property NSString *concatenaNota;
+@property NSString *pontoNota;
+@property float posNota;
 
 
 @end

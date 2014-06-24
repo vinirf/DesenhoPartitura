@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "Sinfonia.h"
+#import <QuartzCore/QuartzCore.h>
 
 @interface DesenhaPartitura : NSObject {
     NSString *codeValue2;
@@ -15,7 +16,8 @@
     float tamanhoHorizontal;
     float tamanhoVertical;
     
-    float pos;
+    float posNotaReal;
+    
 }
 
 +(DesenhaPartitura*)sharedManager;

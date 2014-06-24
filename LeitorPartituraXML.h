@@ -53,6 +53,7 @@
     NSMutableString *numeroCompasso;
     NSMutableString *posNotaCimaBaixo;
     NSMutableString *continuaNota;
+    NSMutableString *pontoNota;
     
     NSMutableArray *recebeOrdemNotasDoInstrumento;
     
