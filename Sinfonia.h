@@ -71,7 +71,7 @@
     
     SoundBankPlayer *_soundBankPlayer;
     SoundBankPlayer *_soundBankPlayer2;
-    
+  
 
 }
 
@@ -94,7 +94,9 @@
 
 -(void)tocarPlayerPartitura;
 -(void)pausePlayerPartitura;
--(void)stopPlayerPartitura;
+-(void)pararPlayerPartitura;
+-(void)repetePlayerPartitura;
+
 @property NSString *textoDescricaoNota;
 
 @property int contadorScrollDesloca;
@@ -108,6 +110,8 @@
 
 @property float controleVelocidaTranNota;
 
+-(void)tocarUmaNota:(NSMutableArray*)listaSons :(NSString*)nomeInstrumentoPlist;
+-(void)tocarTodasNotasEdicao:(NSMutableArray*)listaSons :(NSString*)nomeInstrumentoPlist;
 @end
 
 

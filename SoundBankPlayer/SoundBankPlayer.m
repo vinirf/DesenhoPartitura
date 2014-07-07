@@ -80,6 +80,12 @@ Note;
 	[self tearDownAudioSession];
 }
 
+- (void)deallocs
+{
+	[self tearDownAudio];
+	[self tearDownAudioSession];
+}
+
 - (void)setSoundBank:(NSString *)newSoundBankName
 {
 	if (![newSoundBankName isEqualToString:_soundBankName])

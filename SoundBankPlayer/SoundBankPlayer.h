@@ -90,4 +90,6 @@
  */
 - (void)allNotesOff;
 
+- (void)deallocs;
+
 @end

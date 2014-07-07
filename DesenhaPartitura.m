@@ -38,6 +38,70 @@
 }
 
 
+-(void)desenhaContornoPartituraParaEdicao{
+    
+    float posVerticaRiscoPentagrama = 60.0f;
+    float espacamentoRiscoPentagrama = 35.0f;
+    float espacamentoEntrePentagrama = 10.0f;
+    
+    float posVerticalColuna = 0.0f;
+    float espacamentoColunaPentagrama = 260.0f;
+    float espacamentroColunaentrePentagrama = 100.0f;
+    
+    self.listaImagensColunaPentagrama = [[NSMutableArray alloc]init];
+    self.listaImagensTracoPentagrama = [[NSMutableArray alloc]init];
+    
+    
+    for(int i=0;i<1;i++){
+        
+        posVerticalColuna = 250.0f;
+        
+        for(int i =1;i<=4;i++){
+            
+            UIImageView *coluna = [[UIImageView alloc]
+                                   initWithFrame:CGRectMake(posVerticalColuna,posVerticaRiscoPentagrama+100, 2.0f, 120.0f)];
+            coluna.backgroundColor = [UIColor blackColor];
+            posVerticalColuna += espacamentoColunaPentagrama;
+            
+            [ self.listaImagensColunaPentagrama addObject:coluna];
+            
+        }
+        
+        
+        espacamentroColunaentrePentagrama +=  espacamentroColunaentrePentagrama;
+        
+        
+        for(int i=0;i<11;i++){
+            UIImageView *linha = [[UIImageView alloc]
+                                  initWithFrame:CGRectMake(0.0f, posVerticaRiscoPentagrama + espacamentoRiscoPentagrama, 1500, 2.0f)];
+            posVerticaRiscoPentagrama = posVerticaRiscoPentagrama + espacamentoRiscoPentagrama;
+            linha.backgroundColor = [UIColor redColor];
+            
+            if((i>=5)&&(i<10)){
+                linha.backgroundColor = [UIColor blackColor];
+            }
+            
+            [ self.listaImagensTracoPentagrama addObject:linha];
+        }
+        
+        posVerticaRiscoPentagrama = posVerticaRiscoPentagrama +  espacamentoEntrePentagrama;
+        
+    }
+    
+//    NSString *tipoClave = @"G";
+//    if([tipoClave isEqualToString:@"G"]){
+//        UIImage *image = [UIImage imageNamed:@"claveSol.png"];
+//        UIImageView *clave = [[UIImageView alloc] initWithImage:image];
+//        UIImageView *posLinha = [ self.listaImagensTracoPentagrama objectAtIndex:2+5];
+//        [clave setFrame:CGRectMake(posLinha.frame.origin.x, posLinha.frame.origin.y-50,50,120)];
+//        [self.listaImagensTracoPentagrama addObject:clave];
+//    }
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
 -(void)desenhaContornoPartitura{
     
     float posVerticaRiscoPentagrama = 120.0f;
@@ -558,12 +622,10 @@
                         UIImage *traco = [UIImage imageNamed:@"4-2Pausa"];
                         
                         tracoView = [[UIImageView alloc] initWithImage:traco];
-                        
                         [tracoView setFrame:CGRectMake(posLinhaPegaMaiorNota.frame.origin.x-3+posLinha2.frame.size.width+tamanhoTraco,
                                                        valorDistanciaBarra,
                                                        (posLinha2.frame.origin.x-posLinhaComeco.frame.origin.x+10),
                                                        10)];
-                        
                     }else{
                         
                         float valorDistanciaBarra = notaMaior.imagemNota.frame.origin.y+notaMaior.imagemNota.frame.size.height+20;

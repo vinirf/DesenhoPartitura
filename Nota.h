@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <QuartzCore/QuartzCore.h>
 
-@interface Nota : NSObject {
+@interface Nota : UIView {
   
     
 }
@@ -28,6 +28,7 @@
 @property NSString *concatenaNota;
 @property NSString *pontoNota;
 @property float posNota;
+@property int posicaoNotaEdicao;
 
 
 @end

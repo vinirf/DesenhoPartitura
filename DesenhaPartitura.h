@@ -37,6 +37,6 @@
 
 @property  UIImageView *tipoClave;
 
-
+-(void)desenhaContornoPartituraParaEdicao;
 
 @end

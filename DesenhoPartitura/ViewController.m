@@ -62,6 +62,15 @@
     
 }
 
+-(void)removeViewDoScroll{
+    [Sinfonia sharedManager].compassoAtual = 0;
+    [Sinfonia sharedManager].contadorScrollDesloca = 500;
+    [[self scroll] setContentOffset:CGPointMake(0,0) animated:YES];
+    for (UIView *subView in self.scroll.subviews){
+        [subView removeFromSuperview];
+    }
+}
+
 -(void)atualizaAlteraTempo{
     
     self.textoDescricaoVelocidade.text = [NSString stringWithFormat:@"%0.2f",[[Sinfonia sharedManager]controleVelocidaTranNota]];
@@ -80,13 +89,15 @@
 
 
 - (IBAction)tocar:(id)sender {
-    [[Sinfonia sharedManager] metodoIniciaSinfonia:@"ticofuba":@"Piano"];
+    [self removeViewDoScroll];
+    [[Sinfonia sharedManager] metodoIniciaSinfonia:@"ninar":@"Piano"];
     [self addItensDesenhoPartituraAoScroll];
     
 }
 
 
 - (IBAction)tocarViolao:(id)sender {
+    [self removeViewDoScroll];
     [[Sinfonia sharedManager] metodoIniciaSinfonia:@"asa":@"natural"];
     [self addItensDesenhoPartituraAoScroll];
 
@@ -94,10 +105,10 @@
 
 
 - (IBAction)tocarFlauta:(id)sender {
-    [[Sinfonia sharedManager] metodoIniciaSinfonia:@"5th_Symphony":@"FlautaDoce"];
+    [self removeViewDoScroll];
+    [[Sinfonia sharedManager] metodoIniciaSinfonia:@"asa":@"FlautaDoce"];
     [self addItensDesenhoPartituraAoScroll];
 }
-
 
 
 - (IBAction)botaoPause:(id)sender {
@@ -105,7 +116,7 @@
 }
 
 - (IBAction)botaoStop:(id)sender {
-    [[Sinfonia sharedManager]stopPlayerPartitura];
+    [[Sinfonia sharedManager]repetePlayerPartitura];
     [[self scroll] setContentOffset:CGPointMake(0,0) animated:YES];
 
 }
